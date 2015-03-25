@@ -3,7 +3,7 @@
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Database\Migrations\MigrationCreator as MC;
 
-class MigrationsOrganiser extends MC
+class MigrationCreator extends MC
 {
 	public function __construct(Filesystem $files)
 	{
