@@ -1,6 +1,6 @@
 # Laravel 5 Migrations Organiser
 
-The number of migration in any sized project can quickly become huge, and although they are ordered, having one big list can someimes be annoying to navigate.
+The number of migrations in any sized project can quickly become huge, and although they are ordered, having one big list can sometimes be annoying to navigate.
 
 This package will put your migrations in `yyyy/mm` folders e.g.
 
