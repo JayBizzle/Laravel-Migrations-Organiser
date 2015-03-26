@@ -2,6 +2,7 @@
 
 use Jaybizzle\MigrationsOrganiser\MigrationCreator;
 use Illuminate\Database\MigrationServiceProvider as MSP;
+use Jaybizzle\MigrationsOrganiser\Commands\MigrateOrganise;
 
 class MigrationsOrganiserServiceProvider extends MSP
 {
@@ -19,6 +20,20 @@ class MigrationsOrganiserServiceProvider extends MSP
 			$repository = $app['migration.repository'];
 
 			return new Migrator($repository, $app['db'], $app['files']);
+		});
+	}
+	
+	public function register()
+	{
+		$this->registerMigrateOrganise();
+		$this->commands('migrateorganise');
+	}
+
+	private function registerMigrateOrganise()
+	{
+		$this->app['migrateorganise'] = $this->app->share(function($app)
+		{
+			return new MigrateOrganise($app['files']);
 		});
 	}
 }
