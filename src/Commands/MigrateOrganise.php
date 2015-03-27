@@ -68,7 +68,7 @@ class MigrateOrganise extends Command {
 			if(!$this->files->exists($basePath.$datePath)) {
 				$this->files->makeDirectory($basePath.$datePath, 0775, true);
 			}	
-			$this->files->copy($basePath.$file.'.php', $basePath.$datePath.$file.'.php');
+			$this->files->move($basePath.$file.'.php', $basePath.$datePath.$file.'.php');
 			
 		}
 		

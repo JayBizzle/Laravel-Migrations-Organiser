@@ -20,5 +20,4 @@ Add the following to the `providers` array in your `config/app.php` file..
 Then just use the standard artisan commands as you normally would and the package will take care of the rest.
 
 ### Still to do
-- Add options to migrate:organise command to allow other actions such as delete migration files once moved.
 - Reverse migrate:organise command?
