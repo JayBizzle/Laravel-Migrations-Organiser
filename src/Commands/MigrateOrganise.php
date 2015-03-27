@@ -76,7 +76,6 @@ class MigrateOrganise extends Command {
 			
 			// Move the migration into its new folder	
 			$this->files->move($basePath.$migration.'.php', $basePath.$datePath.$migration.'.php');
-			
 		}
 		
 		$this->line('Migrations Organised Successfully');

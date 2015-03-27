@@ -38,7 +38,8 @@ class Migrator extends M
 
 	public function requireFiles($path, array $files)
 	{
-		foreach ($files as $file) {
+		foreach ($files as $file)
+		{
 			$newPath = $path.$this->getFilePathWithFolders($file).'.php';
 			$this->files->requireOnce($newPath);
 		}
@@ -77,18 +78,21 @@ class Migrator extends M
 	public function rglob($pattern, $flags = 0)
 	{
 		$files = glob($pattern, $flags); 
-		foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir) {
+		foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
+		{
 			$files = array_merge($files, $this->rglob($dir.'/'.basename($pattern), $flags));
 		}
 		return $files;
 	}
 
-	public function getFilePathWithFolders($file) {
+	public function getFilePathWithFolders($file)
+	{
 		$datePath = $this->getDateFolderStructure($file);
 		return '/'.$datePath.$file;
 	}
 
-	public function getFilePathWithoutFolders($file) {
+	public function getFilePathWithoutFolders($file)
+	{
 		return basename($file);
 	}
 	
