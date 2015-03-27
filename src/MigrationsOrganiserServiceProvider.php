@@ -25,13 +25,15 @@ class MigrationsOrganiserServiceProvider extends MSP
 	
 	public function register()
 	{
+		$this->registerCreator();
+		$this->registerMigrator();
 		$this->registerMigrateOrganise();
-		$this->commands('migrateorganise');
+		$this->commands('command.migrate', 'command.migrate.make', 'command.migrate.organise');
 	}
 
 	private function registerMigrateOrganise()
 	{
-		$this->app['migrateorganise'] = $this->app->share(function($app)
+		$this->app['command.migrate.organise'] = $this->app->share(function($app)
 		{
 			return new MigrateOrganise($app['files']);
 		});
