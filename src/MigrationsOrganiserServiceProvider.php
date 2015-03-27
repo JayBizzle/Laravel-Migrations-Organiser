@@ -47,3 +47,4 @@ class MigrationsOrganiserServiceProvider extends MSP
 			return new MigrateDisorganise($app['files'],$app['migrator']);
 		});
 	}
+}
