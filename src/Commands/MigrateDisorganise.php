@@ -71,6 +71,14 @@ class MigrateDisorganise extends Command {
 			// Move the migration into base migration folder	
 			$this->files->move($basePath.$datePath.$migration.'.php', $basePath.$migration.'.php');
 		}
+
+		// clean up the folders
+		$dirs = $this->files->directories($basePath);
+
+		foreach($dirs as $dir)
+		{
+			$this->files->deleteDirectory($dir);
+		}
 		
 		$this->line('Migrations disorganised successfully');
 	}
