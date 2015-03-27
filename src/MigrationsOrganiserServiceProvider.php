@@ -32,7 +32,7 @@ class MigrationsOrganiserServiceProvider extends MSP
 		});
 	}
 
-	private function registerMigrateOrganise()
+	protected function registerMigrateOrganise()
 	{
 		$this->app['command.migrate.organise'] = $this->app->share(function($app)
 		{
@@ -40,7 +40,7 @@ class MigrationsOrganiserServiceProvider extends MSP
 		});
 	}
 	
-	private function registerMigrateDisorganise()
+	protected function registerMigrateDisorganise()
 	{
 		$this->app['command.migrate.disorganise'] = $this->app->share(function($app)
 		{
