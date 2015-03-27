@@ -17,7 +17,7 @@ class MigrationsOrganiserServiceProvider extends MSP
 
 	protected function registerCreator()
 	{
-		$this->app->bindShared('migration.creator', function ($app) {
+		$this->app->bindShared('migration.creator', function($app) {
 			return new MigrationCreator($app['files']);
 		});
 	}
@@ -36,7 +36,7 @@ class MigrationsOrganiserServiceProvider extends MSP
 	{
 		$this->app['command.migrate.organise'] = $this->app->share(function($app)
 		{
-			return new MigrateOrganise($app['files'],$app['migrator']);
+			return new MigrateOrganise($app['files'], $app['migrator']);
 		});
 	}
 	
@@ -44,7 +44,7 @@ class MigrationsOrganiserServiceProvider extends MSP
 	{
 		$this->app['command.migrate.disorganise'] = $this->app->share(function($app)
 		{
-			return new MigrateDisorganise($app['files'],$app['migrator']);
+			return new MigrateDisorganise($app['files'], $app['migrator']);
 		});
 	}
 }

@@ -1,7 +1,6 @@
 <?php namespace Jaybizzle\MigrationsOrganiser\Commands;
 
 use Illuminate\Console\ConfirmableTrait;
-use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Database\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputOption;
@@ -63,13 +62,13 @@ class MigrateDisorganise extends BaseCommand {
 		$basePath = $this->getMigrationPath();
 		$migrations = $this->migrator->getMigrationFiles($basePath);
 	
-		if(count($migrations) == 0)
+		if (count($migrations) == 0)
 		{
 			$this->line('No migrations to move');
 			return;
 		}
 		
-		foreach($migrations as $migration)
+		foreach ($migrations as $migration)
 		{	
 			$datePath = $this->migrator->getDateFolderStructure($migration);
 			
@@ -82,11 +81,11 @@ class MigrateDisorganise extends BaseCommand {
 		$this->line('Run clean up function?');
 		$this->line('This will delete all subdirectories in the migrations directory');
 		
-		if ( ! $this->confirmToProceed('Would you like to run the clean up command?')) return;
+		if (!$this->confirmToProceed('Would you like to run the clean up command?')) return;
 		// clean up the folders
 		$dirs = $this->files->directories($basePath);
 
-		foreach($dirs as $dir)
+		foreach ($dirs as $dir)
 		{
 			$this->files->deleteDirectory($dir);
 		}

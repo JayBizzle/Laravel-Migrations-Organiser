@@ -1,6 +1,5 @@
 <?php namespace Jaybizzle\MigrationsOrganiser\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Database\Console\Migrations\BaseCommand;
@@ -59,18 +58,18 @@ class MigrateOrganise extends BaseCommand {
 		$basePath = $this->getMigrationPath();
 		$migrations = $this->migrator->getMigrationFiles($basePath, false);
 	
-		if(count($migrations) == 0)
+		if (count($migrations) == 0)
 		{
 			$this->line('No migrations to move');
 			return;
 		}
 		
-		foreach($migrations as $migration)
+		foreach ($migrations as $migration)
 		{	
 			$datePath = $this->migrator->getDateFolderStructure($migration);
 						
 			// Create folder if it does not already exist
-			if(!$this->files->exists($basePath.'/'.$datePath)) 
+			if (!$this->files->exists($basePath.'/'.$datePath)) 
 			{
 				$this->files->makeDirectory($basePath.'/'.$datePath, 0775, true);
 			}

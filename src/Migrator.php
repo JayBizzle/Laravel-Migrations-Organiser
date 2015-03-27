@@ -8,7 +8,7 @@ class Migrator extends M
 {
 	public function getMigrationFiles($path, $recursive = true)
 	{
-		if($recursive === true)
+		if ($recursive === true)
 		{
 			$files = $this->rglob($path.'/*_*.php');
 		}
