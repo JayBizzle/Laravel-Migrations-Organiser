@@ -2,6 +2,7 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Database\Migrations\Migrator;
 
 class MigrateOrganise extends Command {
 
@@ -21,6 +22,13 @@ class MigrateOrganise extends Command {
 	
 	
 	/**
+	 * The migrator instance.
+	 *
+	 * @var \Illuminate\Filesystem\Filesystem
+	 */
+	protected $migrator;
+	
+	/**
 	 * The filesystem instance.
 	 *
 	 * @var \Illuminate\Filesystem\Filesystem
@@ -28,47 +36,41 @@ class MigrateOrganise extends Command {
 	protected $files;
 	
 	/**
-		 * Create a new migrator instance.
-		 *
-		 * @param  \Illuminate\Filesystem\Filesystem  $files
-		 * @return void
-		 */
-		public function __construct(Filesystem $files)
-		{
-			$this->files = $files;
-        	parent::__construct();
-		}
-	/**
-	 * Get all of the migration files in a given path.
+	 * Create a new migrator instance.
 	 *
-	 * @param  string  $path
-	 * @return array
+	 * @param  \Illuminate\Filesystem\Filesystem  $files
+	 * @return void
+	 */
+	public function __construct(Filesystem $files, Migrator $migrator)
+	{
+		$this->migrator = $migrator;
+		$this->files = $files;
+    	parent::__construct();
+	}
+	
+	/**
+	 * Create date folder structure and move migrations into.
+	 *
+	 * @return void
 	 */
 	public function fire()
 	{
 		$basePath = $this->laravel['path.database'].'/migrations/';
-		$files = $this->files->glob($basePath.'*_*.php');
-		// Once we have the array of files in the directory we will just remove the
-		// extension and take the basename of the file which is all we need when
-		// finding the migrations that haven't been run against the databases.
-		if ($files === false) return array();
-		$files = array_map(function($file)
-		{
-			return str_replace('.php', '', basename($file));
-		}, $files);
-		// Once we have all of the formatted file names we will sort them and since
-		// they all start with a timestamp this should give us the migrations in
-		// the order they were actually created by the application developers.
-		sort($files);
-		
-		foreach($files as $file){
-			$folders = explode('_', $file);
+		$migrations = $this->migrator->getMigrationFiles($basePath);
+
+		foreach($migrations as $migration)
+		{	
+			$folders = explode('_', $migration);
 			$datePath = $folders[0].'/'.$folders[1].'/';
 			
-			if(!$this->files->exists($basePath.$datePath)) {
+			// Create folder if it does not already exist
+			if(!$this->files->exists($basePath.$datePath)) 
+			{
 				$this->files->makeDirectory($basePath.$datePath, 0775, true);
-			}	
-			$this->files->move($basePath.$file.'.php', $basePath.$datePath.$file.'.php');
+			}
+			
+			// Move the migration into its new folder	
+			$this->files->move($basePath.$migration.'.php', $basePath.$datePath.$migration.'.php');
 			
 		}
 		

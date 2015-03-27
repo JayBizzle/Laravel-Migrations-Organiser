@@ -35,7 +35,7 @@ class MigrationsOrganiserServiceProvider extends MSP
 	{
 		$this->app['command.migrate.organise'] = $this->app->share(function($app)
 		{
-			return new MigrateOrganise($app['files']);
+			return new MigrateOrganise($app['files'],$app['migrator']);
 		});
 	}
 }
