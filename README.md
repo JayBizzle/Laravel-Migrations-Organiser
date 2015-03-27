@@ -1,4 +1,5 @@
 # Laravel 5 Migrations Organiser
+ [![Build Status](https://img.shields.io/travis/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://travis-ci.org/JayBizzle/Laravel-Migrations-Organiser)
 
 The number of migrations in any sized project can quickly become huge, and although they are ordered, having one big list can sometimes be annoying to navigate.
 
