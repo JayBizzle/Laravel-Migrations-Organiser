@@ -1,10 +1,14 @@
 <?php namespace Jaybizzle\MigrationsOrganiser\Commands;
 
+use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Database\Migrations\Migrator;
+use Symfony\Component\Console\Input\InputOption;
 
 class MigrateDisorganise extends Command {
+	
+	use ConfirmableTrait;
 
 	/**
 	 * The console command name.
@@ -71,7 +75,13 @@ class MigrateDisorganise extends Command {
 			// Move the migration into base migration folder	
 			$this->files->move($basePath.$datePath.$migration.'.php', $basePath.$migration.'.php');
 		}
-
+		
+		$this->line('Migrations disorganised successfully');
+		$this->line('');
+		$this->line('Run clean up function?');
+		$this->line('This will delete all subdirectories in the migrations directory');
+		
+		if ( ! $this->confirmToProceed('Would you like to run the clean up command?')) return;
 		// clean up the folders
 		$dirs = $this->files->directories($basePath);
 
@@ -80,6 +90,17 @@ class MigrateDisorganise extends Command {
 			$this->files->deleteDirectory($dir);
 		}
 		
-		$this->line('Migrations disorganised successfully');
+	}
+	
+	/**
+	 * Get the console command options.
+	 *
+	 * @return array
+	 */
+	protected function getOptions()
+	{
+		return array(
+			array('force', null, InputOption::VALUE_NONE, 'Force the operation to delete migration folder subdirectories without prompt.'),
+		);
 	}
 }
