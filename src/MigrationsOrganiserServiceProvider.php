@@ -7,6 +7,14 @@ use Jaybizzle\MigrationsOrganiser\Commands\MigrateDisorganise;
 
 class MigrationsOrganiserServiceProvider extends MSP
 {
+	public function register()
+	{
+		parent::register();
+		$this->registerMigrateOrganise();
+		$this->registerMigrateDisorganise();
+		$this->commands('command.migrate.organise', 'command.migrate.disorganise');
+	}
+
 	protected function registerCreator()
 	{
 		$this->app->bindShared('migration.creator', function ($app) {
@@ -22,15 +30,6 @@ class MigrationsOrganiserServiceProvider extends MSP
 
 			return new Migrator($repository, $app['db'], $app['files']);
 		});
-	}
-	
-	public function register()
-	{
-		$this->registerCreator();
-		$this->registerMigrator();
-		$this->registerMigrateOrganise();
-		$this->registerMigrateDisorganise();
-		$this->commands('command.migrate', 'command.migrate.make', 'command.migrate.organise', 'command.migrate.disorganise');
 	}
 
 	private function registerMigrateOrganise()
@@ -48,4 +47,3 @@ class MigrationsOrganiserServiceProvider extends MSP
 			return new MigrateDisorganise($app['files'],$app['migrator']);
 		});
 	}
-}
