@@ -90,7 +90,6 @@ class MigrateDisorganise extends BaseCommand {
 		{
 			$this->files->deleteDirectory($dir);
 		}
-		
 	}
 	
 	/**
