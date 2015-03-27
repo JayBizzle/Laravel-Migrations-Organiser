@@ -10,7 +10,7 @@ class Migrator extends M
 	{
 		if ($recursive === true)
 		{
-			$files = $this->rglob($path.'/*_*.php');
+			$files = $this->rglob($path.'/*_*.php', 0, true);
 		}
 		else
 		{
@@ -75,9 +75,16 @@ class Migrator extends M
 		$this->note("<info>Migrated:</info> $file");
 	}
 
-	public function rglob($pattern, $flags = 0)
+	public function rglob($pattern, $flags = 0, $ignore = false)
 	{
-		$files = glob($pattern, $flags); 
+		if ($ignore === false)
+		{
+			$files = glob($pattern, $flags);
+		}
+		else
+		{
+			$files = [];
+		}
 		foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
 		{
 			$files = array_merge($files, $this->rglob($dir.'/'.basename($pattern), $flags));
