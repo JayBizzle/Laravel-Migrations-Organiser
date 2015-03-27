@@ -47,9 +47,9 @@ class MigrateDisorganise extends Command {
 	 */
 	public function __construct(Filesystem $files, Migrator $migrator)
 	{
+		parent::__construct();
 		$this->migrator = $migrator;
 		$this->files = $files;
-		parent::__construct();
 	}
 	
 	/**
