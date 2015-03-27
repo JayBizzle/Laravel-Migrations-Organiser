@@ -72,6 +72,6 @@ class MigrateDisorganise extends Command {
 			$this->files->move($basePath.$datePath.$migration.'.php', $basePath.$migration.'.php');
 		}
 		
-		$this->line('Migrations Disorganised Successfully');
+		$this->line('Migrations disorganised successfully');
 	}
 }

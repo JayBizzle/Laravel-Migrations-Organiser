@@ -78,6 +78,6 @@ class MigrateOrganise extends Command {
 			$this->files->move($basePath.$migration.'.php', $basePath.$datePath.$migration.'.php');
 		}
 		
-		$this->line('Migrations Organised Successfully');
+		$this->line('Migrations organised successfully');
 	}
 }
