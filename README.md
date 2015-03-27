@@ -16,8 +16,10 @@ Add the following to the `providers` array in your `config/app.php` file..
 ```PHP
     'Jaybizzle\MigrationsOrganiser\MigrationsOrganiserServiceProvider',
 ```
-
+Running migrate:organise will move all of your migrations into the relevant `yyyy/mm` folder
 Then just use the standard artisan commands as you normally would and the package will take care of the rest.
 
-### Still to do
-- Reverse migrate:organise command?
+Uninstall
+============
+
+Running migrate:disorganise will move all migrations from the `yyyy/mm` folder structure into the base migrations folder.
