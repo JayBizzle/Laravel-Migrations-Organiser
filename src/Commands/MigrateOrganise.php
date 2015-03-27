@@ -66,9 +66,8 @@ class MigrateOrganise extends Command {
 		
 		foreach($migrations as $migration)
 		{	
-			$folders = explode('_', $migration);
-			$datePath = $folders[0].'/'.$folders[1].'/';
-			
+			$datePath = $this->migrator->getDateFolderStructure($migration);
+						
 			// Create folder if it does not already exist
 			if(!$this->files->exists($basePath.$datePath)) 
 			{

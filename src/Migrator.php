@@ -84,11 +84,17 @@ class Migrator extends M
 	}
 
 	public function getFilePathWithFolders($file) {
-		$parts = explode('_', $file);
-		return '/'.$parts[0].'/'.$parts[1].'/'.$file;
+		$datePath = $this->getDateFolderStructure($file);
+		return '/'.$datePath.$file;
 	}
 
 	public function getFilePathWithoutFolders($file) {
 		return basename($file);
+	}
+	
+	public function getDateFolderStructure($file)
+	{
+		$parts = explode('_', $file);
+		return $parts[0].'/'.$parts[1].'/';
 	}
 }
