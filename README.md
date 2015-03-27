@@ -20,7 +20,7 @@ Add the following to the `providers` array in your `config/app.php` file..
 
 Usage
 ============
-This package hooks into the default `artisan make:migration` command. Just use that as you normally would and the package takes car of the rest.
+This package hooks into the default `artisan make:migration` command. Just use that as you normally would and the package takes care of the rest.
 
 ##### What if I have already created migrations
 No problem, just run `artisan migrate:organise` and your migrations will be moved into the relevant `yyyy/mm` folders.
