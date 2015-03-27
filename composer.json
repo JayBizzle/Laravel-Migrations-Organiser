@@ -7,6 +7,10 @@
         {
             "name": "Mark Beech",
             "email": "mbeech@mark-beech.co.uk"
+        },
+        {
+            "name": "Max King",
+            "email": ""
         }
     ],
     "require": {
