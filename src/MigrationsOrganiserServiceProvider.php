@@ -3,6 +3,7 @@
 use Jaybizzle\MigrationsOrganiser\MigrationCreator;
 use Illuminate\Database\MigrationServiceProvider as MSP;
 use Jaybizzle\MigrationsOrganiser\Commands\MigrateOrganise;
+use Jaybizzle\MigrationsOrganiser\Commands\MigrateDisorganise;
 
 class MigrationsOrganiserServiceProvider extends MSP
 {
@@ -28,7 +29,8 @@ class MigrationsOrganiserServiceProvider extends MSP
 		$this->registerCreator();
 		$this->registerMigrator();
 		$this->registerMigrateOrganise();
-		$this->commands('command.migrate', 'command.migrate.make', 'command.migrate.organise');
+		$this->registerMigrateDisorganise();
+		$this->commands('command.migrate', 'command.migrate.make', 'command.migrate.organise', 'command.migrate.disorganise');
 	}
 
 	private function registerMigrateOrganise()
@@ -36,6 +38,14 @@ class MigrationsOrganiserServiceProvider extends MSP
 		$this->app['command.migrate.organise'] = $this->app->share(function($app)
 		{
 			return new MigrateOrganise($app['files'],$app['migrator']);
+		});
+	}
+	
+	private function registerMigrateDisorganise()
+	{
+		$this->app['command.migrate.disorganise'] = $this->app->share(function($app)
+		{
+			return new MigrateDisorganise($app['files'],$app['migrator']);
 		});
 	}
 }
