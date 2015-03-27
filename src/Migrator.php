@@ -6,10 +6,17 @@ use Illuminate\Database\ConnectionResolverInterface as Resolver;
 
 class Migrator extends M
 {
-	public function getMigrationFiles($path)
+	public function getMigrationFiles($path, $recursive = true)
 	{
-		$files = $this->rglob($path.'/*_*.php');
-
+		if($recursive === true)
+		{
+			$files = $this->rglob($path.'/*_*.php');
+		}
+		else
+		{
+			$files = $this->files->glob($path.'/*_*.php');
+		}
+		
 		// Once we have the array of files in the directory we will just remove the
 		// extension and take the basename of the file which is all we need when
 		// finding the migrations that haven't been run against the databases.

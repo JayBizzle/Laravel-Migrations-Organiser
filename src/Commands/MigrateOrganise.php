@@ -56,8 +56,14 @@ class MigrateOrganise extends Command {
 	public function fire()
 	{
 		$basePath = $this->laravel['path.database'].'/migrations/';
-		$migrations = $this->migrator->getMigrationFiles($basePath);
-
+		$migrations = $this->migrator->getMigrationFiles($basePath, false);
+	
+		if(count($migrations) == 0)
+		{
+			$this->line('No migrations to move');
+			return;
+		}
+		
 		foreach($migrations as $migration)
 		{	
 			$folders = explode('_', $migration);
