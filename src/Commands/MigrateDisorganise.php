@@ -5,8 +5,9 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Database\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Database\Console\Migrations\BaseCommand;
 
-class MigrateDisorganise extends Command {
+class MigrateDisorganise extends BaseCommand {
 	
 	use ConfirmableTrait;
 
@@ -59,7 +60,7 @@ class MigrateDisorganise extends Command {
 	 */
 	public function fire()
 	{
-		$basePath = $this->laravel['path.database'].'/migrations/';
+		$basePath = $this->getMigrationPath();
 		$migrations = $this->migrator->getMigrationFiles($basePath);
 	
 		if(count($migrations) == 0)
@@ -73,7 +74,7 @@ class MigrateDisorganise extends Command {
 			$datePath = $this->migrator->getDateFolderStructure($migration);
 			
 			// Move the migration into base migration folder	
-			$this->files->move($basePath.$datePath.$migration.'.php', $basePath.$migration.'.php');
+			$this->files->move($basePath.'/'.$datePath.$migration.'.php', $basePath.'/'.$migration.'.php');
 		}
 		
 		$this->line('Migrations disorganised successfully');
