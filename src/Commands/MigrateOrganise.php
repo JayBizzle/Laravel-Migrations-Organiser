@@ -1,7 +1,7 @@
 <?php namespace Jaybizzle\MigrationsOrganiser\Commands;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Database\Migrations\Migrator;
+use Jaybizzle\MigrationsOrganiser\Migrator;
 use Illuminate\Database\Console\Migrations\BaseCommand;
 
 class MigrateOrganise extends BaseCommand {

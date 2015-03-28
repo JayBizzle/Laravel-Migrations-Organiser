@@ -2,7 +2,7 @@
 
 use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Database\Migrations\Migrator;
+use Jaybizzle\MigrationsOrganiser\Migrator;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Database\Console\Migrations\BaseCommand;
 
