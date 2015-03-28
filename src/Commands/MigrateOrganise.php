@@ -42,9 +42,18 @@ class MigrateOrganise extends BaseCommand {
 	 */
 	public function __construct(Filesystem $files, Migrator $migrator)
 	{
-		parent::__construct();
-		$this->migrator = $migrator;
-		$this->files = $files;
+		if ($migrator instanceof \Jaybizzle\MigrationsOrganiser\Migrator)
+		{
+			parent::__construct();
+			$this->migrator = $migrator;
+			$this->files    = $files;
+		}
+		else
+		{
+			throw new \LogicException(
+				'$migrator must be an instance of \Jaybizzle\MigrationsOrganiser\Migrator'
+			);
+		}
 	}
 	
 	/**
