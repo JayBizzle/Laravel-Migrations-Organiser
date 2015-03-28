@@ -24,11 +24,10 @@ class MigrateDisorganise extends BaseCommand {
 	 */
 	protected $description = 'Move migrations from a yyyy/mm folder structure back to the base migrations folder';
 	
-	
 	/**
 	 * The migrator instance.
 	 *
-	 * @var \Illuminate\Filesystem\Filesystem
+	 * @var \Illuminate\Database\Migrations\Migrator
 	 */
 	protected $migrator;
 	
@@ -43,6 +42,7 @@ class MigrateDisorganise extends BaseCommand {
 	 * Create a new migrator instance.
 	 *
 	 * @param  \Illuminate\Filesystem\Filesystem  $files
+	 * @param  \Illuminate\Database\Migrations\Migrator  $migrator
 	 * @return void
 	 */
 	public function __construct(Filesystem $files, Migrator $migrator)
