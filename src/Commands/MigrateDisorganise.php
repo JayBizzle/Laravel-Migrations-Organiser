@@ -77,9 +77,14 @@ class MigrateDisorganise extends BaseCommand {
 		}
 		
 		$this->line('Migrations disorganised successfully');
-		$this->line('');
-		$this->line('Run clean up function?');
-		$this->line('This will delete all subdirectories in the migrations directory');
+		
+		// Start of clean up functionality
+		if (!$this->option('force'))
+		{
+			$this->line('');
+			$this->line('Run clean up function?');
+			$this->line('This will delete all subdirectories in the migrations directory');
+		}
 		
 		if (!$this->confirmToProceed('Would you like to run the clean up command?', function() { return true; })) return;
 		// clean up the folders
@@ -89,6 +94,7 @@ class MigrateDisorganise extends BaseCommand {
 		{
 			$this->files->deleteDirectory($dir);
 		}
+		$this->line('Subdirectories removed');
 	}
 	
 	/**
