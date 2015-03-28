@@ -81,7 +81,7 @@ class MigrateDisorganise extends BaseCommand {
 		$this->line('Run clean up function?');
 		$this->line('This will delete all subdirectories in the migrations directory');
 		
-		if (!$this->confirmToProceed('Would you like to run the clean up command?')) return;
+		if (!$this->confirmToProceed('Would you like to run the clean up command?', function() { return true; })) return;
 		// clean up the folders
 		$dirs = $this->files->directories($basePath);
 
