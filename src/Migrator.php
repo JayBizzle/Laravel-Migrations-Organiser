@@ -45,7 +45,7 @@ class Migrator extends M
 		}
 	}
 
-		/**
+	/**
 	 * Run "up" a migration instance.
 	 *
 	 * @param  string  $file
