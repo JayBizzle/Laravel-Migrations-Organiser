@@ -59,10 +59,11 @@ class MigrateDisorganise extends BaseCommand {
 	 */
 	public function fire()
 	{
-		$basePath = $this->getMigrationPath();
+		$basePath   = $this->getMigrationPath();
 		$migrations = $this->migrator->getMigrationFiles($basePath);
-	
-		if (count($migrations) == 0)
+		$count      = count($migrations);
+		
+		if ($count == 0)
 		{
 			$this->line('No migrations to move');
 			return;
@@ -76,7 +77,7 @@ class MigrateDisorganise extends BaseCommand {
 			$this->files->move($basePath.'/'.$datePath.$migration.'.php', $basePath.'/'.$migration.'.php');
 		}
 		
-		$this->line('Migrations disorganised successfully');
+		$this->line('Migrations disorganised successfully ('.$count.' migrations moved)');
 		
 		// Start of clean up functionality
 		if (!$this->option('force'))

@@ -55,10 +55,11 @@ class MigrateOrganise extends BaseCommand {
 	 */
 	public function fire()
 	{
-		$basePath = $this->getMigrationPath();
+		$basePath   = $this->getMigrationPath();
 		$migrations = $this->migrator->getMigrationFiles($basePath, false);
+		$count      = count($migrations);
 	
-		if (count($migrations) == 0)
+		if ($count == 0)
 		{
 			$this->line('No migrations to move');
 			return;
@@ -78,6 +79,6 @@ class MigrateOrganise extends BaseCommand {
 			$this->files->move($basePath.'/'.$migration.'.php', $basePath.'/'.$datePath.$migration.'.php');
 		}
 		
-		$this->line('Migrations organised successfully');
+		$this->line('Migrations organised successfully ('.$count.' migrations moved)');
 	}
 }
