@@ -39,7 +39,6 @@ class MigrateOrganise extends BaseCommand {
 	 *
 	 * @param  \Illuminate\Filesystem\Filesystem  $files
 	 * @param  \Illuminate\Database\Migrations\Migrator  $migrator
-	 * @return void
 	 */
 	public function __construct(Filesystem $files, Migrator $migrator)
 	{
