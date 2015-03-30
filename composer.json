@@ -1,7 +1,7 @@
 {
     "name": "jaybizzle/laravel-migrations-organiser",
-    "description": "A Laravel 5 package to organise migration files.",
-    "keywords": ["laravel", "migrations", "organise"],
+    "description": "A Laravel 5 package to help organise migration files.",
+    "keywords": ["laravel", "migrations", "migrate", "organise", "organiser", "organize", "organizer", "folder", "date", "dated"],
     "license": "MIT",
     "authors": [
         {
