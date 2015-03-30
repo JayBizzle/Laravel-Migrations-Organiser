@@ -12,7 +12,7 @@ This package will put your migrations in `yyyy/mm` folders e.g.
 Installation
 ============
 
-Run `composer require jaybizzle/laravel-migrations-organiser 1.*` or add `"jaybizzle/laravel-migrations-organiser": "2.*"` to your `composer.json` fil2
+Run `composer require jaybizzle/laravel-migrations-organiser 2.*` or add `"jaybizzle/laravel-migrations-organiser": "2.*"` to your `composer.json` file.
 
 Add the following to the `providers` array in your `config/app.php` file..
 
