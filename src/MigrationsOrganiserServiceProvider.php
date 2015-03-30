@@ -35,7 +35,7 @@ class MigrationsOrganiserServiceProvider extends MSP
 
 	protected function registerMigrateOrganise()
 	{
-		$this->app['command.migrate.organise'] = $this->app->share(function($app)
+		$this->app->singleton('command.migrate.organise', function($app)
 		{
 			return new MigrateOrganise($app['files'], $app['migrator']);
 		});
@@ -43,7 +43,7 @@ class MigrationsOrganiserServiceProvider extends MSP
 	
 	protected function registerMigrateDisorganise()
 	{
-		$this->app['command.migrate.disorganise'] = $this->app->share(function($app)
+		$this->app->singleton('command.migrate.disorganise', function($app)
 		{
 			return new MigrateDisorganise($app['files'], $app['migrator']);
 		});
