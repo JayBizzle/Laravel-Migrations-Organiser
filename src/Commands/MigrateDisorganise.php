@@ -27,7 +27,7 @@ class MigrateDisorganise extends BaseCommand {
 	/**
 	 * The migrator instance.
 	 *
-	 * @var \Illuminate\Database\Migrations\Migrator
+	 * @var \Jaybizzle\MigrationsOrganiser\Migrator
 	 */
 	protected $migrator;
 	
