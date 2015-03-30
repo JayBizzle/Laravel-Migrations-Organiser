@@ -17,7 +17,8 @@ class MigrationsOrganiserServiceProvider extends MSP
 
 	protected function registerCreator()
 	{
-		$this->app->singleton('migration.creator', function($app) {
+		$this->app->singleton('migration.creator', function($app) 
+		{
 			return new MigrationCreator($app['files']);
 		});
 	}
