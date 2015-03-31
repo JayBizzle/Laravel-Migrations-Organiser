@@ -66,7 +66,7 @@ class MigrateDisorganise extends BaseCommand {
 		
 		if ($count == 0)
 		{
-			$this->line('No migrations to move');
+			$this->comment('No migrations to move');
 			return;
 		}
 		
@@ -77,7 +77,7 @@ class MigrateDisorganise extends BaseCommand {
 			$this->files->move($this->basePath.'/'.$datePath.$migration.'.php', $this->basePath.'/'.$migration.'.php');
 		}
 		
-		$this->line('Migrations disorganised successfully ('.$count.' migrations moved)');
+		$this->info('Migrations disorganised successfully ('.$count.' migrations moved)');
 		$this->cleanup();
 	}
 	
@@ -112,7 +112,7 @@ class MigrateDisorganise extends BaseCommand {
 			$this->files->deleteDirectory($dir);
 		}
 		
-		$this->line('Subdirectories deleted');
+		$this->info('Subdirectories deleted');
 	}
 	
 	/**

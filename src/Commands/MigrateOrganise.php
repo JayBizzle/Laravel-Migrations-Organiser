@@ -60,7 +60,7 @@ class MigrateOrganise extends BaseCommand {
 	
 		if ($count == 0)
 		{
-			$this->line('No migrations to move');
+			$this->comment('No migrations to move');
 			return;
 		}
 		
@@ -78,6 +78,6 @@ class MigrateOrganise extends BaseCommand {
 			$this->files->move($basePath.'/'.$migration.'.php', $basePath.'/'.$datePath.$migration.'.php');
 		}
 		
-		$this->line('Migrations organised successfully ('.$count.' migrations moved)');
+		$this->info('Migrations organised successfully ('.$count.' migrations moved)');
 	}
 }
