@@ -39,6 +39,11 @@ class MigrateDisorganise extends BaseCommand {
 	protected $files;
 	
 	/**
+	 * The basePath for the migrations.
+	 */
+	protected $basePath;
+	
+	/**
 	 * Create a new migrator instance.
 	 *
 	 * @param  \Illuminate\Filesystem\Filesystem  $files
@@ -48,7 +53,7 @@ class MigrateDisorganise extends BaseCommand {
 	{
 		parent::__construct();
 		$this->migrator = $migrator;
-		$this->files = $files;
+		$this->files    = $files;
 	}
 	
 	/**
@@ -58,9 +63,9 @@ class MigrateDisorganise extends BaseCommand {
 	 */
 	public function fire()
 	{
-		$basePath   = $this->getMigrationPath();
-		$migrations = $this->migrator->getMigrationFiles($basePath);
-		$count      = count($migrations);
+		$this->basePath = $this->getMigrationPath();
+		$migrations     = $this->migrator->getMigrationFiles($this->basePath);
+		$count          = count($migrations);
 		
 		if ($count == 0)
 		{
@@ -71,30 +76,46 @@ class MigrateDisorganise extends BaseCommand {
 		foreach ($migrations as $migration)
 		{	
 			$datePath = $this->migrator->getDateFolderStructure($migration);
-			
 			// Move the migration into base migration folder	
-			$this->files->move($basePath.'/'.$datePath.$migration.'.php', $basePath.'/'.$migration.'.php');
+			$this->files->move($this->basePath.'/'.$datePath.$migration.'.php', $this->basePath.'/'.$migration.'.php');
 		}
 		
 		$this->line('Migrations disorganised successfully ('.$count.' migrations moved)');
-		
-		// Start of clean up functionality
-		if (!$this->option('force'))
+		$this->cleanup();
+	}
+	
+	/**
+	* Decide whether or not to delete directories
+	*
+	* @return void
+	*/
+	public function cleanup()
+	{
+		if ($this->option('force'))
 		{
-			$this->line('');
-			$this->line('Run clean up function?');
-			$this->line('This will delete all subdirectories in the migrations directory');
+			$this->deleteDirs();
 		}
-		
-		if (!$this->confirmToProceed('Would you like to run the clean up command?', function() { return true; })) return;
-		// clean up the folders
-		$dirs = $this->files->directories($basePath);
+		elseif ($this->confirm('Delete all subdirectories in migrations folder? [yes|no]', false))
+		{
+			$this->deleteDirs();
+		}
+	}
+	
+	/**
+	* Delete subdirectories in the migrations folder
+	*
+	* @return void
+	*/
+	public function deleteDirs()
+	{
+		$dirs = $this->files->directories($this->basePath);
 
 		foreach ($dirs as $dir)
 		{
 			$this->files->deleteDirectory($dir);
 		}
-		$this->line('Subdirectories removed');
+		
+		$this->line('Subdirectories deleted');
 	}
 	
 	/**
