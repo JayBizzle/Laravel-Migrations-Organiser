@@ -105,10 +105,12 @@ class Migrator extends M
 		{
 			$files = [];
 		}
+
 		foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
 		{
 			$files = array_merge($files, $this->rglob($dir.'/'.basename($pattern), $flags));
 		}
+
 		return $files;
 	}
 
@@ -134,7 +136,6 @@ class Migrator extends M
 	{
 		return basename($file);
 	}
-	
 
 	/**
 	 * Add date folders to migrations path
