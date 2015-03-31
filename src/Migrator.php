@@ -6,6 +6,12 @@ use Illuminate\Database\ConnectionResolverInterface as Resolver;
 
 class Migrator extends M
 {
+	/**
+	 * Get all of the migration files in a given path.
+	 *
+	 * @param  string  $path
+	 * @return array
+	 */
 	public function getMigrationFiles($path, $recursive = true)
 	{
 		if ($recursive === true)
@@ -36,6 +42,13 @@ class Migrator extends M
 		return $files;
 	}
 
+	/**
+	 * Require in all the migration files in a given path.
+	 *
+	 * @param  string  $path
+	 * @param  array   $files
+	 * @return void
+	 */
 	public function requireFiles($path, array $files)
 	{
 		foreach ($files as $file)
@@ -75,6 +88,13 @@ class Migrator extends M
 		$this->note("<info>Migrated:</info> $file");
 	}
 
+	/**
+	 * Recursive glob
+	 * @param  string  $pattern
+	 * @param  integer $flags
+	 * @param  boolean $ignore
+	 * @return array
+	 */
 	public function rglob($pattern, $flags = 0, $ignore = false)
 	{
 		if ($ignore === false)
@@ -92,17 +112,36 @@ class Migrator extends M
 		return $files;
 	}
 
+	/**
+	 * Get the migration file path with our injected date folder
+	 * 
+	 * @param  string $file
+	 * @return string
+	 */
 	public function getFilePathWithFolders($file)
 	{
 		$datePath = $this->getDateFolderStructure($file);
 		return '/'.$datePath.$file;
 	}
 
+	/**
+	 * Remove folders from file path
+	 * 
+	 * @param  string $file
+	 * @return string
+	 */
 	public function getFilePathWithoutFolders($file)
 	{
 		return basename($file);
 	}
 	
+
+	/**
+	 * Add date folders to migrations path
+	 * 
+	 * @param  string $file
+	 * @return string
+	 */
 	public function getDateFolderStructure($file)
 	{
 		$parts = explode('_', $file);
