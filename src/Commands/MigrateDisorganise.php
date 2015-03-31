@@ -1,14 +1,11 @@
 <?php namespace Jaybizzle\MigrationsOrganiser\Commands;
 
-use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Filesystem\Filesystem;
 use Jaybizzle\MigrationsOrganiser\Migrator;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Database\Console\Migrations\BaseCommand;
 
 class MigrateDisorganise extends BaseCommand {
-	
-	use ConfirmableTrait;
 
 	/**
 	 * The console command name.
