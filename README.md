@@ -28,4 +28,4 @@ This package hooks into the default `artisan make:migration` command. Just use t
 No problem, just run `artisan migrate:organise` and your migrations will be moved into the relevant `yyyy/mm` folders.
 
 ##### I want my migrations back to how they were
-Again, No problem. Running `artisan migrate:disorganise` will move all migrations from the `yyyy/mm` folder structure into the base migrations folder. Add the `--force` option to delete left over folder without confirmation.
+Again, No problem. Running `artisan migrate:disorganise` will move all migrations from the `yyyy/mm` folder structure into the base migrations folder. Add the `--force` option to delete left over folders without confirmation.
