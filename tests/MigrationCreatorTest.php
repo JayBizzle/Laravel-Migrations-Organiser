@@ -1,7 +1,6 @@
 <?php
 
 use Mockery as m;
-use Jaybizzle\MigrationsOrganiser\MigrationCreator;
 
 class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase {
 
@@ -19,7 +18,7 @@ class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase {
 
 		$creator->afterCreate(function() { $_SERVER['__migration.creator'] = true; });
 		$creator->expects($this->any())->method('getDatePrefix')->will($this->returnValue('foo'));
-		$creator->getFilesystem()->shouldReceive('get')->once()->with($creator->getStubPath().'/blank.stub')->andReturn('{{class}}');
+		$creator->getFilesystem()->shouldReceive('get')->once()->with($creator->getStubPath().'/blank.stub')->andReturn('DummyClass');
 		$creator->getFilesystem()->shouldReceive('exists')->once()->shouldReceive('makeDirectory')->once()->shouldReceive('put')->once()->with('foo/'.date('Y').'/'.date('m').'/foo_create_bar.php', 'CreateBar');
 
 		$creator->create('create_bar', 'foo');
@@ -34,7 +33,7 @@ class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase {
 	{
 		$creator = $this->getCreator();
 		$creator->expects($this->any())->method('getDatePrefix')->will($this->returnValue('foo'));
-		$creator->getFilesystem()->shouldReceive('get')->once()->with($creator->getStubPath().'/update.stub')->andReturn('{{class}} {{table}}');
+		$creator->getFilesystem()->shouldReceive('get')->once()->with($creator->getStubPath().'/update.stub')->andReturn('DummyClass DummyTable');
 		$creator->getFilesystem()->shouldReceive('exists')->once()->shouldReceive('makeDirectory')->shouldReceive('put')->once()->with('foo/'.date('Y').'/'.date('m').'/foo_create_bar.php', 'CreateBar baz');
 
 		$creator->create('create_bar', 'foo', 'baz');
@@ -45,7 +44,7 @@ class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase {
 	{
 		$creator = $this->getCreator();
 		$creator->expects($this->any())->method('getDatePrefix')->will($this->returnValue('foo'));
-		$creator->getFilesystem()->shouldReceive('get')->once()->with($creator->getStubPath().'/create.stub')->andReturn('{{class}} {{table}}');
+		$creator->getFilesystem()->shouldReceive('get')->once()->with($creator->getStubPath().'/create.stub')->andReturn('DummyClass DummyTable');
 		$creator->getFilesystem()->shouldReceive('exists')->once()->shouldReceive('makeDirectory')->shouldReceive('put')->once()->with('foo/'.date('Y').'/'.date('m').'/foo_create_bar.php', 'CreateBar baz');
 
 		$creator->create('create_bar', 'foo', 'baz', true);
