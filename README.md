@@ -1,4 +1,4 @@
-# Laravel 5 Migrations Organiser
+# Laravel 5.1 Migrations Organiser
  [![Build Status](https://img.shields.io/travis/JayBizzle/Laravel-Migrations-Organiser/master.svg?style=flat-square)](https://travis-ci.org/JayBizzle/Laravel-Migrations-Organiser)
  [![Total Downloads](https://img.shields.io/packagist/dt/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://packagist.org/packages/jaybizzle/Laravel-Migrations-Organiser)
  [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://scrutinizer-ci.com/g/JayBizzle/Laravel-Migrations-Organiser/?branch=master) [![Laravel](https://img.shields.io/badge/laravel-5.1.*-ff69b4.svg?style=flat-square)](https://laravel.com)
@@ -9,10 +9,16 @@ This package will put your migrations in `yyyy/mm` folders e.g.
 
 `./database/migrations/2015/03/2015_03_25_210946_create_users_table.php`
 
+Versions
+========
+ - Laravel 4.2 (coming soon)
+ - Laravel 5.0 ([2.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/2.0))
+ - Laravel 5.1 (master branch - this branch)
+
 Installation
 ============
 
-Run `composer require jaybizzle/laravel-migrations-organiser 2.*` or add `"jaybizzle/laravel-migrations-organiser": "2.*"` to your `composer.json` file.
+Run `composer require jaybizzle/laravel-migrations-organiser 3.*` or add `"jaybizzle/laravel-migrations-organiser": "2.*"` to your `composer.json` file.
 
 Add the following to the `providers` array in your `config/app.php` file..
 
