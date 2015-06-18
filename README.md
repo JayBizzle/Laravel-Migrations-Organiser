@@ -18,7 +18,7 @@ Versions
 Installation
 ============
 
-Run `composer require jaybizzle/laravel-migrations-organiser 3.*` or add `"jaybizzle/laravel-migrations-organiser": "2.*"` to your `composer.json` file.
+Run `composer require jaybizzle/laravel-migrations-organiser 3.*` or add `"jaybizzle/laravel-migrations-organiser": "3.*"` to your `composer.json` file.
 
 Add the following to the `providers` array in your `config/app.php` file..
 
