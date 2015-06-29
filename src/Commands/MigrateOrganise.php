@@ -3,6 +3,7 @@
 use Illuminate\Filesystem\Filesystem;
 use Jaybizzle\MigrationsOrganiser\Migrator;
 use Illuminate\Database\Console\Migrations\BaseCommand;
+use Symfony\Component\Console\Input\InputOption;
 
 class MigrateOrganise extends BaseCommand {
 
@@ -79,5 +80,21 @@ class MigrateOrganise extends BaseCommand {
 		}
 		
 		$this->info('Migrations organised successfully ('.$count.' migrations moved)');
+	}
+	
+	/**
+	 * Get the console command options.
+	 *
+	 * @return array
+	 */
+	protected function getOptions()
+	{
+		return array(
+			array('bench', null, InputOption::VALUE_OPTIONAL, 'The name of the workbench to migrate.', null),
+
+			array('path', null, InputOption::VALUE_OPTIONAL, 'The path to migration files.', null),
+
+			array('package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null),
+		);
 	}
 }

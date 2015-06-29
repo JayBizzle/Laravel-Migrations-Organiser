@@ -1,11 +1,14 @@
 <?php namespace Jaybizzle\MigrationsOrganiser\Commands;
 
+use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Filesystem\Filesystem;
 use Jaybizzle\MigrationsOrganiser\Migrator;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Database\Console\Migrations\BaseCommand;
 
 class MigrateDisorganise extends BaseCommand {
+	
+	use ConfirmableTrait;
 
 	/**
 	 * The console command name.
@@ -60,9 +63,9 @@ class MigrateDisorganise extends BaseCommand {
 	 */
 	public function fire()
 	{
-		$this->basePath = $this->getMigrationPath();
-		$migrations     = $this->migrator->getMigrationFiles($this->basePath);
-		$count          = count($migrations);
+		$basePath   = $this->getMigrationPath();
+		$migrations = $this->migrator->getMigrationFiles($basePath);
+		$count      = count($migrations);
 		
 		if ($count == 0)
 		{
@@ -74,7 +77,7 @@ class MigrateDisorganise extends BaseCommand {
 		{	
 			$datePath = $this->migrator->getDateFolderStructure($migration);
 			// Move the migration into base migration folder	
-			$this->files->move($this->basePath.'/'.$datePath.$migration.'.php', $this->basePath.'/'.$migration.'.php');
+			$this->files->move($basePath.'/'.$datePath.$migration.'.php', $basePath.'/'.$migration.'.php');
 		}
 		
 		$this->info('Migrations disorganised successfully ('.$count.' migrations moved)');
@@ -124,6 +127,12 @@ class MigrateDisorganise extends BaseCommand {
 	{
 		return array(
 			array('force', null, InputOption::VALUE_NONE, 'Force the operation to delete migration folder subdirectories without prompt.'),
+
+			array('bench', null, InputOption::VALUE_OPTIONAL, 'The name of the workbench to migrate.', null),
+
+			array('path', null, InputOption::VALUE_OPTIONAL, 'The path to migration files.', null),
+
+			array('package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null),
 		);
 	}
 }
