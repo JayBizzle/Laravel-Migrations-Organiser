@@ -63,8 +63,8 @@ class MigrateDisorganise extends BaseCommand {
 	 */
 	public function fire()
 	{
-		$basePath   = $this->getMigrationPath();
-		$migrations = $this->migrator->getMigrationFiles($basePath);
+		$this->basePath   = $this->getMigrationPath();
+		$migrations = $this->migrator->getMigrationFiles($this->basePath);
 		$count      = count($migrations);
 		
 		if ($count == 0)
@@ -77,7 +77,7 @@ class MigrateDisorganise extends BaseCommand {
 		{	
 			$datePath = $this->migrator->getDateFolderStructure($migration);
 			// Move the migration into base migration folder	
-			$this->files->move($basePath.'/'.$datePath.$migration.'.php', $basePath.'/'.$migration.'.php');
+			$this->files->move($this->basePath.'/'.$datePath.$migration.'.php', $this->basePath.'/'.$migration.'.php');
 		}
 		
 		$this->info('Migrations disorganised successfully ('.$count.' migrations moved)');
