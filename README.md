@@ -1,7 +1,7 @@
 # Laravel 5.0 Migrations Organiser
- [![Build Status](https://img.shields.io/travis/JayBizzle/Laravel-Migrations-Organiser/2.0.svg.svg?style=flat-square)](https://travis-ci.org/JayBizzle/Laravel-Migrations-Organiser)
+ [![Build Status](https://img.shields.io/travis/JayBizzle/Laravel-Migrations-Organiser/2.0.svg?style=flat-square)](https://travis-ci.org/JayBizzle/Laravel-Migrations-Organiser)
  [![Total Downloads](https://img.shields.io/packagist/dt/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://packagist.org/packages/jaybizzle/Laravel-Migrations-Organiser)
- [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://scrutinizer-ci.com/g/JayBizzle/Laravel-Migrations-Organiser/?branch=master) [![Laravel](https://img.shields.io/badge/laravel-5.0.*-ff69b4.svg?style=flat-square)](https://laravel.com)
+ [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://scrutinizer-ci.com/g/JayBizzle/Laravel-Migrations-Organiser/?branch=master) [![Laravel](https://img.shields.io/badge/laravel-5.0-ff69b4.svg?style=flat-square)](https://laravel.com)
 
 The number of migrations in any sized project can quickly become huge, and although they are ordered, having one big list can sometimes be inconvenient and slow to navigate.
 
@@ -11,7 +11,7 @@ This package will put your migrations in `yyyy/mm` folders e.g.
 
 Versions
 ========
- - Laravel 4.2 (coming soon)
+ - Laravel 4.2 ([1.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/1.0))
  - Laravel 5.0 (2.0 branch - this branch)
  - Laravel 5.1 ([master branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/master))
 
