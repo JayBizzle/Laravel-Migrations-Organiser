@@ -11,7 +11,7 @@ This package will put your migrations in `yyyy/mm` folders e.g.
 
 Versions
 ========
- - Laravel 4.2 (coming soon)
+ - Laravel 4.2 ([1.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/1.0))
  - Laravel 5.0 ([2.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/2.0))
  - Laravel 5.1 (master branch - this branch)
 
