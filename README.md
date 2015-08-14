@@ -22,6 +22,13 @@ Run `composer require jaybizzle/laravel-migrations-organiser 3.*` or add `"jaybi
 
 Add the following to the `providers` array in your `config/app.php` file..
 
+For Laravel 5.1
+```PHP
+    Jaybizzle\MigrationsOrganiser\MigrationsOrganiserServiceProvider::class,
+```
+
+
+
 ```PHP
     'Jaybizzle\MigrationsOrganiser\MigrationsOrganiserServiceProvider',
 ```
