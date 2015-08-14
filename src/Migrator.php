@@ -1,15 +1,16 @@
-<?php namespace Jaybizzle\MigrationsOrganiser;
+<?php
 
-use Illuminate\Filesystem\Filesystem;
+namespace Jaybizzle\MigrationsOrganiser;
+
 use Illuminate\Database\Migrations\Migrator as M;
-use Illuminate\Database\ConnectionResolverInterface as Resolver;
 
 class Migrator extends M
 {
     /**
      * Get all of the migration files in a given path.
      *
-     * @param  string  $path
+     * @param string $path
+     *
      * @return array
      */
     public function getMigrationFiles($path, $recursive = true)
@@ -19,12 +20,12 @@ class Migrator extends M
         } else {
             $files = $this->files->glob($path.'/*_*.php');
         }
-        
+
         // Once we have the array of files in the directory we will just remove the
         // extension and take the basename of the file which is all we need when
         // finding the migrations that haven't been run against the databases.
         if ($files === false) {
-            return array();
+            return [];
         }
 
         $files = array_map(function ($file) {
@@ -43,8 +44,9 @@ class Migrator extends M
     /**
      * Require in all the migration files in a given path.
      *
-     * @param  string  $path
-     * @param  array   $files
+     * @param string $path
+     * @param array  $files
+     *
      * @return void
      */
     public function requireFiles($path, array $files)
@@ -58,9 +60,10 @@ class Migrator extends M
     /**
      * Run "up" a migration instance.
      *
-     * @param  string  $file
-     * @param  int     $batch
-     * @param  bool    $pretend
+     * @param string $file
+     * @param int    $batch
+     * @param bool   $pretend
+     *
      * @return void
      */
     protected function runUp($file, $batch, $pretend)
@@ -85,10 +88,12 @@ class Migrator extends M
     }
 
     /**
-     * Recursive glob
-     * @param  string  $pattern
-     * @param  integer $flags
-     * @param  boolean $ignore
+     * Recursive glob.
+     *
+     * @param string $pattern
+     * @param int    $flags
+     * @param bool   $ignore
+     *
      * @return array
      */
     public function rglob($pattern, $flags = 0, $ignore = false)
@@ -99,7 +104,7 @@ class Migrator extends M
             $files = [];
         }
 
-        foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir) {
+        foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
             $files = array_merge($files, $this->rglob($dir.'/'.basename($pattern), $flags));
         }
 
@@ -107,21 +112,24 @@ class Migrator extends M
     }
 
     /**
-     * Get the migration file path with our injected date folder
+     * Get the migration file path with our injected date folder.
      *
-     * @param  string $file
+     * @param string $file
+     *
      * @return string
      */
     public function getFilePathWithFolders($file)
     {
         $datePath = $this->getDateFolderStructure($file);
+
         return '/'.$datePath.$file;
     }
 
     /**
-     * Remove folders from file path
+     * Remove folders from file path.
      *
-     * @param  string $file
+     * @param string $file
+     *
      * @return string
      */
     public function getFilePathWithoutFolders($file)
@@ -130,14 +138,16 @@ class Migrator extends M
     }
 
     /**
-     * Add date folders to migrations path
+     * Add date folders to migrations path.
      *
-     * @param  string $file
+     * @param string $file
+     *
      * @return string
      */
     public function getDateFolderStructure($file)
     {
         $parts = explode('_', $file);
+
         return $parts[0].'/'.$parts[1].'/';
     }
 }
