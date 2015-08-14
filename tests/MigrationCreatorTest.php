@@ -9,7 +9,6 @@ class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase
         m::close();
     }
 
-
     public function testBasicCreateMethodStoresMigrationFile()
     {
         $creator = $this->getCreator();
@@ -28,7 +27,6 @@ class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase
         unset($_SERVER['__migration.creator']);
     }
 
-
     public function testTableUpdateMigrationStoresMigrationFile()
     {
         $creator = $this->getCreator();
@@ -38,7 +36,6 @@ class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase
 
         $creator->create('create_bar', 'foo', 'baz');
     }
-
 
     public function testTableCreationMigrationStoresMigrationFile()
     {
@@ -50,11 +47,10 @@ class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase
         $creator->create('create_bar', 'foo', 'baz', true);
     }
 
-
     protected function getCreator()
     {
         $files = m::mock('Illuminate\Filesystem\Filesystem');
 
-        return $this->getMock('Jaybizzle\MigrationsOrganiser\MigrationCreator', array('getDatePrefix'), array($files));
+        return $this->getMock('Jaybizzle\MigrationsOrganiser\MigrationCreator', ['getDatePrefix'], [$files]);
     }
 }

@@ -1,9 +1,10 @@
-<?php namespace Jaybizzle\MigrationsOrganiser;
+<?php
 
-use Jaybizzle\MigrationsOrganiser\MigrationCreator;
+namespace Jaybizzle\MigrationsOrganiser;
+
 use Illuminate\Database\MigrationServiceProvider as MSP;
-use Jaybizzle\MigrationsOrganiser\Commands\MigrateOrganise;
 use Jaybizzle\MigrationsOrganiser\Commands\MigrateDisorganise;
+use Jaybizzle\MigrationsOrganiser\Commands\MigrateOrganise;
 
 class MigrationsOrganiserServiceProvider extends MSP
 {
@@ -37,7 +38,7 @@ class MigrationsOrganiserServiceProvider extends MSP
             return new MigrateOrganise($app['files'], $app['migrator']);
         });
     }
-    
+
     protected function registerMigrateDisorganise()
     {
         $this->app->singleton('command.migrate.disorganise', function ($app) {
