@@ -35,3 +35,5 @@ No problem, just run `artisan migrate:organise` and your migrations will be move
 
 ##### I want my migrations back to how they were
 Again, No problem. Running `artisan migrate:disorganise` will move all migrations from the `yyyy/mm` folder structure into the base migrations folder. Add the `--force` option to delete left over folders without confirmation.
+
+[![Analytics](https://ga-beacon.appspot.com/UA-72430465-1/Laravel-Migrations-Organiser/readme?pixel)](https://github.com/JayBizzle/Laravel-Migrations-Organiser)
