@@ -10,7 +10,7 @@ class MigrationCreator extends MC
     {
         $path = $path.'/'.date('Y').'/'.date('m');
 
-        if (!$this->files->exists($path)) {
+        if (! $this->files->exists($path)) {
             $this->files->makeDirectory($path, 0775, true);
         }
 
