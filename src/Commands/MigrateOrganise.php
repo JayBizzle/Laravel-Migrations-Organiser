@@ -70,7 +70,7 @@ class MigrateOrganise extends BaseCommand
             $datePath = $this->migrator->getDateFolderStructure($migration);
 
             // Create folder if it does not already exist
-            if (!$this->files->exists($basePath.'/'.$datePath)) {
+            if (! $this->files->exists($basePath.'/'.$datePath)) {
                 $this->files->makeDirectory($basePath.'/'.$datePath, 0775, true);
             }
 
