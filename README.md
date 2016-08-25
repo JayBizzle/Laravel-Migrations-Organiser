@@ -1,4 +1,4 @@
-# Laravel 5.1/5.2 Migrations Organiser
+# Laravel 4 and 5 Migrations Organiser
  [![Build Status](https://img.shields.io/travis/JayBizzle/Laravel-Migrations-Organiser/master.svg?style=flat-square)](https://travis-ci.org/JayBizzle/Laravel-Migrations-Organiser)
  [![Total Downloads](https://img.shields.io/packagist/dt/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://packagist.org/packages/jaybizzle/Laravel-Migrations-Organiser)
  [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://scrutinizer-ci.com/g/JayBizzle/Laravel-Migrations-Organiser/?branch=master) [![Laravel](https://img.shields.io/badge/laravel-5.1.*|5.2.*-ff69b4.svg?style=flat-square)](https://laravel.com)
@@ -13,12 +13,13 @@ Versions
 ========
  - Laravel 4.2 ([1.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/1.0))
  - Laravel 5.0 ([2.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/2.0))
- - Laravel 5.1/5.2 (master branch - this branch)
+ - Laravel 5.1/5.2 ([3.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/3.0))
+ - Laravel 5.3 (master branch - this branch)
 
 Installation
 ============
 
-Run `composer require jaybizzle/laravel-migrations-organiser 3.*` or add `"jaybizzle/laravel-migrations-organiser": "3.*"` to your `composer.json` file.
+Run `composer require jaybizzle/laravel-migrations-organiser 4.*` or add `"jaybizzle/laravel-migrations-organiser": "4.*"` to your `composer.json` file.
 
 Add the following to the `providers` array in your `config/app.php` file..
 
@@ -34,6 +35,6 @@ This package hooks into the default `artisan make:migration` command. Just use t
 No problem, just run `artisan migrate:organise` and your migrations will be moved into the relevant `yyyy/mm` folders.
 
 ##### I want my migrations back to how they were
-Again, No problem. Running `artisan migrate:disorganise` will move all migrations from the `yyyy/mm` folder structure into the base migrations folder. Add the `--force` option to delete left over folders without confirmation.
+Again, no problem. Running `artisan migrate:disorganise` will move all migrations from the `yyyy/mm` folder structure into the base migrations folder. Add the `--force` option to delete left over folders without confirmation.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-72430465-1/Laravel-Migrations-Organiser/readme?pixel)](https://github.com/JayBizzle/Laravel-Migrations-Organiser)
