@@ -13,7 +13,9 @@ Versions
 ========
  - Laravel 4.2 ([1.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/1.0))
  - Laravel 5.0 ([2.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/2.0))
- - Laravel 5.1/5.2 (master branch - this branch)
+ - Laravel 5.1/5.2 (3.0 branch - this branch)
+ - Laravel 5.3 ([master branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/master))
+
 
 Installation
 ============
@@ -34,6 +36,6 @@ This package hooks into the default `artisan make:migration` command. Just use t
 No problem, just run `artisan migrate:organise` and your migrations will be moved into the relevant `yyyy/mm` folders.
 
 ##### I want my migrations back to how they were
-Again, No problem. Running `artisan migrate:disorganise` will move all migrations from the `yyyy/mm` folder structure into the base migrations folder. Add the `--force` option to delete left over folders without confirmation.
+Again, no problem. Running `artisan migrate:disorganise` will move all migrations from the `yyyy/mm` folder structure into the base migrations folder. Add the `--force` option to delete left over folders without confirmation.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-72430465-1/Laravel-Migrations-Organiser/readme?pixel)](https://github.com/JayBizzle/Laravel-Migrations-Organiser)
