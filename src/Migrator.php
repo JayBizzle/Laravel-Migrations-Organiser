@@ -7,18 +7,28 @@ use Illuminate\Database\Migrations\Migrator as M;
 class Migrator extends M
 {
     /**
+     * Fully qualified path to the application's migration directory
+     *
+     * @var string
+     */
+    private $path;
+    
+    /**
      * Get all of the migration files in a given path.
      *
      * @param string $path
+     * @param bool   $recursive
      *
      * @return array
      */
     public function getMigrationFiles($path, $recursive = true)
     {
+        $this->setPath($path);
+        
         if ($recursive === true) {
-            $files = $this->rglob($path.'/*_*.php', 0, true);
+            $files = $this->rglob($this->path.'/*_*.php', 0, true);
         } else {
-            $files = $this->files->glob($path.'/*_*.php');
+            $files = $this->files->glob($this->path.'/*_*.php');
         }
 
         // Once we have the array of files in the directory we will just remove the
@@ -44,7 +54,6 @@ class Migrator extends M
     /**
      * Require in all the migration files in a given path.
      *
-     * @param string $path
      * @param array  $files
      *
      * @return void
@@ -122,7 +131,7 @@ class Migrator extends M
     {
         $datePath = $this->getDateFolderStructure($file);
 
-        return '/'.$datePath.$file;
+        return $this->path . '/' . $datePath . $file;
     }
 
     /**
@@ -149,5 +158,15 @@ class Migrator extends M
         $parts = explode('_', $file);
 
         return $parts[0].'/'.$parts[1].'/';
+    }
+    
+    /**
+     * Set the path
+     *
+     * @param array|string $path
+     */
+    private function setPath($path)
+    {
+        $this->path = is_array($path) ? $path[0] : $path;
     }
 }
