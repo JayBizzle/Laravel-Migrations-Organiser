@@ -49,10 +49,10 @@ class Migrator extends M
      *
      * @return void
      */
-    public function requireFiles($path, array $files)
+    public function requireFiles(array $files)
     {
         foreach ($files as $file) {
-            $newPath = $path.$this->getFilePathWithFolders($file).'.php';
+            $newPath = $this->getFilePathWithFolders($file).'.php';
             $this->files->requireOnce($newPath);
         }
     }
