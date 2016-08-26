@@ -15,7 +15,9 @@ class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase
 
         unset($_SERVER['__migration.creator']);
 
-        $creator->afterCreate(function () { $_SERVER['__migration.creator'] = true; });
+        $creator->afterCreate(function () {
+            $_SERVER['__migration.creator'] = true;
+        });
         $creator->expects($this->any())->method('getDatePrefix')->will($this->returnValue('foo'));
         $creator->getFilesystem()->shouldReceive('get')->once()->with($creator->getStubPath().'/blank.stub')->andReturn('DummyClass');
         $creator->getFilesystem()->shouldReceive('exists')->once()->shouldReceive('makeDirectory')->once()->shouldReceive('put')->once()->with('foo/'.date('Y').'/'.date('m').'/foo_create_bar.php', 'CreateBar');

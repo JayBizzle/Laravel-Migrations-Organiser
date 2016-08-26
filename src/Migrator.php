@@ -7,12 +7,12 @@ use Illuminate\Database\Migrations\Migrator as M;
 class Migrator extends M
 {
     /**
-     * Fully qualified path to the application's migration directory
+     * Fully qualified path to the application's migration directory.
      *
      * @var string
      */
     private $path;
-    
+
     /**
      * Get all of the migration files in a given path.
      *
@@ -24,7 +24,7 @@ class Migrator extends M
     public function getMigrationFiles($path, $recursive = true)
     {
         $this->setPath($path);
-        
+
         if ($recursive === true) {
             $files = $this->rglob($this->path.'/*_*.php', 0, true);
         } else {
@@ -40,7 +40,6 @@ class Migrator extends M
 
         $files = array_map(function ($file) {
             return str_replace('.php', '', basename($file));
-
         }, $files);
 
         // Once we have all of the formatted file names we will sort them and since
@@ -131,7 +130,7 @@ class Migrator extends M
     {
         $datePath = $this->getDateFolderStructure($file);
 
-        return $this->path . '/' . $datePath . $file;
+        return $this->path.'/'.$datePath.$file;
     }
 
     /**
@@ -159,9 +158,9 @@ class Migrator extends M
 
         return $parts[0].'/'.$parts[1].'/';
     }
-    
+
     /**
-     * Set the path
+     * Set the path.
      *
      * @param array|string $path
      */
