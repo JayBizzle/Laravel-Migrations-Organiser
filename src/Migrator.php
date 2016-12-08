@@ -3,15 +3,11 @@
 namespace Jaybizzle\MigrationsOrganiser;
 
 use Illuminate\Database\Migrations\Migrator as M;
+use RecursiveIteratorIterator as Iterator;
+use RecursiveDirectoryIterator as DirectoryIterator;
 
 class Migrator extends M
 {
-    /**
-     * Fully qualified path to the application's migration directory.
-     *
-     * @var string
-     */
-    private $path;
 
     /**
      * Get all of the migration files in a given path.
@@ -21,128 +17,47 @@ class Migrator extends M
      *
      * @return array
      */
-    public function getMigrationFiles($path, $recursive = true)
+    public function getMigrationFiles($paths = [], $recursive = true)
     {
-        $this->setPath($path);
-
-        if ($recursive === true) {
-            $files = $this->rglob($this->path.'/*_*.php', 0, true);
-        } else {
-            $files = $this->files->glob($this->path.'/*_*.php');
+        if ($recursive) {
+            $paths = $this->getRecursiveFolders($paths);
         }
 
-        // Once we have the array of files in the directory we will just remove the
-        // extension and take the basename of the file which is all we need when
-        // finding the migrations that haven't been run against the databases.
-        if ($files === false) {
-            return [];
-        }
-
-        $files = array_map(function ($file) {
-            return str_replace('.php', '', basename($file));
-        }, $files);
-
-        // Once we have all of the formatted file names we will sort them and since
-        // they all start with a timestamp this should give us the migrations in
-        // the order they were actually created by the application developers.
-        sort($files);
+        $files = parent::getMigrationFiles($paths);
 
         return $files;
     }
 
     /**
-     * Require in all the migration files in a given path.
+     * Get all subdirectories located in an array of folders
      *
-     * @param array  $files
-     *
-     * @return void
-     */
-    public function requireFiles(array $files)
-    {
-        foreach ($files as $file) {
-            $newPath = $this->getFilePathWithFolders($file).'.php';
-            $this->files->requireOnce($newPath);
-        }
-    }
-
-    /**
-     * Run "up" a migration instance.
-     *
-     * @param string $file
-     * @param int    $batch
-     * @param bool   $pretend
-     *
-     * @return void
-     */
-    protected function runUp($file, $batch, $pretend)
-    {
-        // First we will resolve a "real" instance of the migration class from this
-        // migration file name. Once we have the instances we can run the actual
-        // command such as "up" or "down", or we can just simulate the action.
-        $migration = $this->resolve($file);
-
-        if ($pretend) {
-            return $this->pretendToRun($migration, 'up');
-        }
-
-        $migration->up();
-
-        // Once we have run a migrations class, we will log that it was run in this
-        // repository so that we don't try to run it next time we do a migration
-        // in the application. A migration repository keeps the migrate order.
-        $this->repository->log($this->getFilePathWithoutFolders($file), $batch);
-
-        $this->note("<info>Migrated:</info> $file");
-    }
-
-    /**
-     * Recursive glob.
-     *
-     * @param string $pattern
-     * @param int    $flags
-     * @param bool   $ignore
+     * @param array $folders
      *
      * @return array
      */
-    public function rglob($pattern, $flags = 0, $ignore = false)
+    public function getRecursiveFolders($folders)
     {
-        if ($ignore === false) {
-            $files = glob($pattern, $flags);
-        } else {
-            $files = [];
+
+        $paths = [];
+
+        foreach ($folders as $folder) {
+            $iter = new Iterator(
+                new DirectoryIterator($folder, DirectoryIterator::SKIP_DOTS),
+                Iterator::SELF_FIRST,
+                Iterator::CATCH_GET_CHILD // Ignore "Permission denied"
+            );
+
+            $subPaths = array($folder);
+            foreach ($iter as $path => $dir) {
+                if ($dir->isDir()) {
+                    $subPaths[] = $path;
+                }
+            }
+
+            $paths = array_merge($paths, $subPaths);
         }
 
-        foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
-            $files = array_merge($files, $this->rglob($dir.'/'.basename($pattern), $flags));
-        }
-
-        return $files;
-    }
-
-    /**
-     * Get the migration file path with our injected date folder.
-     *
-     * @param string $file
-     *
-     * @return string
-     */
-    public function getFilePathWithFolders($file)
-    {
-        $datePath = $this->getDateFolderStructure($file);
-
-        return $this->path.'/'.$datePath.$file;
-    }
-
-    /**
-     * Remove folders from file path.
-     *
-     * @param string $file
-     *
-     * @return string
-     */
-    public function getFilePathWithoutFolders($file)
-    {
-        return basename($file);
+        return $paths;
     }
 
     /**
@@ -157,15 +72,5 @@ class Migrator extends M
         $parts = explode('_', $file);
 
         return $parts[0].'/'.$parts[1].'/';
-    }
-
-    /**
-     * Set the path.
-     *
-     * @param array|string $path
-     */
-    private function setPath($path)
-    {
-        $this->path = is_array($path) ? $path[0] : $path;
     }
 }

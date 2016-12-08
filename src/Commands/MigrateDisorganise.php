@@ -72,10 +72,10 @@ class MigrateDisorganise extends BaseCommand
             return;
         }
 
-        foreach ($migrations as $migration) {
-            $datePath = $this->migrator->getDateFolderStructure($migration);
+        foreach ($migrations as $migration_name => $migration_path) {
+            $datePath = $this->migrator->getDateFolderStructure($migration_name);
             // Move the migration into base migration folder
-            $this->files->move($this->basePath.'/'.$datePath.$migration.'.php', $this->basePath.'/'.$migration.'.php');
+            $this->files->move($this->basePath.'/'.$datePath.$migration_name.'.php', $this->basePath.'/'.$migration_name.'.php');
         }
 
         $this->info('Migrations disorganised successfully ('.$count.' migrations moved)');
