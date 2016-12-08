@@ -66,8 +66,8 @@ class MigrateOrganise extends BaseCommand
             return;
         }
 
-        foreach ($migrations as $migration) {
-            $datePath = $this->migrator->getDateFolderStructure($migration);
+        foreach ($migrations as $migration_name => $migration_path) {
+            $datePath = $this->migrator->getDateFolderStructure($migration_name);
 
             // Create folder if it does not already exist
             if (! $this->files->exists($basePath.'/'.$datePath)) {
@@ -75,7 +75,7 @@ class MigrateOrganise extends BaseCommand
             }
 
             // Move the migration into its new folder
-            $this->files->move($basePath.'/'.$migration.'.php', $basePath.'/'.$datePath.$migration.'.php');
+            $this->files->move($basePath.'/'.$migration_name.'.php', $basePath.'/'.$datePath.$migration_name.'.php');
         }
 
         $this->info('Migrations organised successfully ('.$count.' migrations moved)');
