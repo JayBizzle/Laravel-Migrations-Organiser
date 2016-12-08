@@ -8,12 +8,6 @@ use RecursiveDirectoryIterator as DirectoryIterator;
 
 class Migrator extends M
 {
-    /**
-     * Fully qualified path to the application's migration directory
-     *
-     * @var string
-     */
-    private $path;
 
     /**
      * Get all of the migration files in a given path.
