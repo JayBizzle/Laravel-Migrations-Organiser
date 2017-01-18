@@ -91,7 +91,7 @@ class MigrateDisorganise extends BaseCommand
     {
         if ($this->option('force')) {
             $this->deleteDirs();
-        } elseif ($this->confirm('Delete all subdirectories in migrations folder? [yes|no]', false)) {
+        } elseif ($this->confirm('Delete all subdirectories in migrations folder?', true)) {
             $this->deleteDirs();
         }
     }
