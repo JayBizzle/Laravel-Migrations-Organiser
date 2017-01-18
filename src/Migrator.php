@@ -37,6 +37,9 @@ class Migrator extends M
      */
     public function getRecursiveFolders($folders)
     {
+        if (! is_array($folders)) {
+            $folders = [$folders];
+        }
 
         $paths = [];
 
