@@ -14,7 +14,7 @@ Versions
  - Laravel 4.2 ([1.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/1.0))
  - Laravel 5.0 ([2.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/2.0))
  - Laravel 5.1/5.2 (3.0 branch - this branch)
- - Laravel 5.3 ([master branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/master))
+ - Laravel 5.3/5.4 ([master branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/master))
 
 
 Installation
