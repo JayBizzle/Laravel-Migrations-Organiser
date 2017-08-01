@@ -3,8 +3,8 @@
 namespace Jaybizzle\MigrationsOrganiser;
 
 use Illuminate\Database\MigrationServiceProvider as MSP;
-use Jaybizzle\MigrationsOrganiser\Commands\MigrateDisorganise;
 use Jaybizzle\MigrationsOrganiser\Commands\MigrateOrganise;
+use Jaybizzle\MigrationsOrganiser\Commands\MigrateDisorganise;
 
 class MigrationsOrganiserServiceProvider extends MSP
 {
