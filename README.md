@@ -2,6 +2,7 @@
  [![Build Status](https://img.shields.io/travis/JayBizzle/Laravel-Migrations-Organiser/master.svg?style=flat-square)](https://travis-ci.org/JayBizzle/Laravel-Migrations-Organiser)
  [![Total Downloads](https://img.shields.io/packagist/dt/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://packagist.org/packages/jaybizzle/Laravel-Migrations-Organiser)
  [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://scrutinizer-ci.com/g/JayBizzle/Laravel-Migrations-Organiser/?branch=master)
+ <a href="https://styleci.io/repos/32828907"><img src="https://styleci.io/repos/32828907/shield" /></a>
 
 The number of migrations in any sized project can quickly become huge, and although they are ordered, having one big list can sometimes be inconvenient and slow to navigate.
 
