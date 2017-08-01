@@ -2,13 +2,12 @@
 
 namespace Jaybizzle\MigrationsOrganiser;
 
-use Illuminate\Database\Migrations\Migrator as M;
 use RecursiveIteratorIterator as Iterator;
+use Illuminate\Database\Migrations\Migrator as M;
 use RecursiveDirectoryIterator as DirectoryIterator;
 
 class Migrator extends M
 {
-
     /**
      * Get all of the migration files in a given path.
      *
@@ -29,7 +28,7 @@ class Migrator extends M
     }
 
     /**
-     * Get all subdirectories located in an array of folders
+     * Get all subdirectories located in an array of folders.
      *
      * @param array $folders
      *
@@ -50,7 +49,7 @@ class Migrator extends M
                 Iterator::CATCH_GET_CHILD // Ignore "Permission denied"
             );
 
-            $subPaths = array($folder);
+            $subPaths = [$folder];
             foreach ($iter as $path => $dir) {
                 if ($dir->isDir()) {
                     $subPaths[] = $path;

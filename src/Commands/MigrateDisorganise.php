@@ -2,10 +2,10 @@
 
 namespace Jaybizzle\MigrationsOrganiser\Commands;
 
-use Illuminate\Database\Console\Migrations\BaseCommand;
 use Illuminate\Filesystem\Filesystem;
 use Jaybizzle\MigrationsOrganiser\Migrator;
 use Symfony\Component\Console\Input\InputOption;
+use Illuminate\Database\Console\Migrations\BaseCommand;
 
 class MigrateDisorganise extends BaseCommand
 {
