@@ -56,11 +56,19 @@ class MigrateDisorganise extends BaseCommand
     }
 
     /**
+     * Fire the command. (Compatibility for < 5.5)
+     */
+    public function fire()
+    {
+        $this->handle();
+    }
+
+    /**
      * Create date folder structure and move migrations into.
      *
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $this->basePath = $this->getMigrationPath();
         $migrations = $this->migrator->getMigrationFiles($this->basePath);
