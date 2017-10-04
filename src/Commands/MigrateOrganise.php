@@ -50,7 +50,7 @@ class MigrateOrganise extends BaseCommand
     }
 
     /**
-     * Fire the command. (Compatibility for < 5.5)
+     * Fire the command. (Compatibility for < 5.5).
      */
     public function fire()
     {
