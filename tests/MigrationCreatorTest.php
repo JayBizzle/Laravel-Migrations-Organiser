@@ -1,8 +1,9 @@
 <?php
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
-class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase
+class DatabaseMigrationCreatorTest extends TestCase
 {
     public function tearDown()
     {
@@ -51,8 +52,8 @@ class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase
 
     protected function getCreator()
     {
-        $files = m::mock('Illuminate\Filesystem\Filesystem');
+        $files = m::mock(Illuminate\Filesystem\Filesystem::class);
 
-        return $this->getMock('Jaybizzle\MigrationsOrganiser\MigrationCreator', ['getDatePrefix'], [$files]);
+        return $this->getMock(Jaybizzle\MigrationsOrganiser\MigrationCreator::class, ['getDatePrefix'], [$files]);
     }
 }

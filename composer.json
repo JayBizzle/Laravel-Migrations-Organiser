@@ -25,7 +25,7 @@
     "require-dev": {
         "nesbot/carbon": "~1.18",
         "mockery/mockery": "~0.9",
-        "phpunit/phpunit": "~4.0",
+        "phpunit/phpunit": "^4.8",
         "illuminate/database": "5.3.*",
         "illuminate/filesystem": "5.3.*"
     },
