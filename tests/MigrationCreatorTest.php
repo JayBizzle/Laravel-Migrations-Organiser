@@ -1,7 +1,7 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
 class DatabaseMigrationCreatorTest extends TestCase
 {
