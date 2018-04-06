@@ -1,8 +1,9 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use Mockery as m;
 
-class DatabaseMigrationCreatorTest extends PHPUnit_Framework_TestCase
+class DatabaseMigrationCreatorTest extends TestCase
 {
     public function tearDown()
     {
