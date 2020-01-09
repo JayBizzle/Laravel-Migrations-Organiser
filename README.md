@@ -1,4 +1,4 @@
-# Laravel 4 and 5 Migrations Organiser
+# Laravel Migrations Organiser
  [![Build Status](https://img.shields.io/travis/JayBizzle/Laravel-Migrations-Organiser/master.svg?style=flat-square)](https://travis-ci.org/JayBizzle/Laravel-Migrations-Organiser)
  [![Total Downloads](https://img.shields.io/packagist/dt/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://packagist.org/packages/jaybizzle/Laravel-Migrations-Organiser)
  [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://scrutinizer-ci.com/g/JayBizzle/Laravel-Migrations-Organiser/?branch=master)
@@ -15,12 +15,14 @@ Versions
  - Laravel 4.2 ([1.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/1.0))
  - Laravel 5.0 ([2.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/2.0))
  - Laravel 5.1/5.2 ([3.0 branch](https://github.com/JayBizzle/Laravel-Migrations-Organiser/tree/3.0))
- - Laravel 5.3-5.8 (master branch - this branch)
+ - Laravel 5.3-6.* (master branch - this branch)
 
 Installation
 ============
 
-Run `composer require jaybizzle/laravel-migrations-organiser 4.*` or add `"jaybizzle/laravel-migrations-organiser": "4.*"` to your `composer.json` file.
+```
+composer require jaybizzle/laravel-migrations-organiser
+```
 
 Add the following to the `providers` array in your `config/app.php` file..
 
