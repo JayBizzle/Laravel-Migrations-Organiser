@@ -2,9 +2,9 @@
 
 namespace Jaybizzle\MigrationsOrganiser\Commands;
 
+use Illuminate\Database\Console\Migrations\BaseCommand;
 use Illuminate\Filesystem\Filesystem;
 use Jaybizzle\MigrationsOrganiser\Migrator;
-use Illuminate\Database\Console\Migrations\BaseCommand;
 
 class MigrateOrganise extends BaseCommand
 {

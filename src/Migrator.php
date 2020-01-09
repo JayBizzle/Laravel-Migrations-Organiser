@@ -2,9 +2,9 @@
 
 namespace Jaybizzle\MigrationsOrganiser;
 
-use RecursiveIteratorIterator as Iterator;
 use Illuminate\Database\Migrations\Migrator as M;
 use RecursiveDirectoryIterator as DirectoryIterator;
+use RecursiveIteratorIterator as Iterator;
 
 class Migrator extends M
 {
