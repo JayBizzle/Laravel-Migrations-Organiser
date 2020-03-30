@@ -2,15 +2,15 @@
 
 namespace Tests;
 
-use Mockery as m;
-use PHPUnit\Framework\TestCase;
-use Jaybizzle\MigrationsOrganiser\MigrationCreator;
 use Illuminate\Filesystem\Filesystem;
 use InvalidArgumentException;
+use Jaybizzle\MigrationsOrganiser\MigrationCreator;
+use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
 class DatabaseMigrationCreatorTest extends TestCase
 {
-    public function tearDown() :void
+    public function tearDown(): void
     {
         m::close();
     }
@@ -109,6 +109,5 @@ class DatabaseMigrationCreatorTest extends TestCase
             ->setMethods(['getDatePrefix'])
             ->setConstructorArgs([$files, $customStubs])
             ->getMock();
-
     }
 }
