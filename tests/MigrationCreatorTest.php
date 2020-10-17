@@ -46,7 +46,7 @@ class DatabaseMigrationCreatorTest extends TestCase
         $creator->expects($this->any())->method('getDatePrefix')->willReturn('foo');
         $creator->getFilesystem()->shouldReceive('exists')->once()->with('stubs/migration.update.stub')->andReturn(false);
         $creator->getFilesystem()->shouldReceive('get')->once()->with($creator->stubPath().'/migration.update.stub')->andReturn('DummyClass DummyTable');
-        $creator->getFilesystem()->shouldReceive('exists')->once()->with('foo/' . $date)->andReturn(false);
+        $creator->getFilesystem()->shouldReceive('exists')->once()->with('foo/'.$date)->andReturn(false);
         $creator->getFilesystem()->shouldReceive('makeDirectory')->once();
         $creator->getFilesystem()->shouldReceive('ensureDirectoryExists')->andReturn(true);
         $creator->getFilesystem()->shouldReceive('put')->once()->with('foo/'.$date.'/foo_create_bar.php', 'CreateBar baz');
