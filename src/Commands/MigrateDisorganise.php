@@ -45,8 +45,8 @@ class MigrateDisorganise extends BaseCommand
     /**
      * Create a new migrator instance.
      *
-     * @param \Illuminate\Filesystem\Filesystem        $files
-     * @param \Illuminate\Database\Migrations\Migrator $migrator
+     * @param  \Illuminate\Filesystem\Filesystem  $files
+     * @param  \Illuminate\Database\Migrations\Migrator  $migrator
      */
     public function __construct(Filesystem $files, Migrator $migrator)
     {
