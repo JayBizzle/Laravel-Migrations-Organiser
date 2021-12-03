@@ -11,7 +11,7 @@ class Migrator extends M
     /**
      * Get all of the migration files in a given path.
      *
-     * @param  string  $path
+     * @param  string|array  $paths
      * @param  bool  $recursive
      * @return array
      */
@@ -29,7 +29,7 @@ class Migrator extends M
     /**
      * Get all subdirectories located in an array of folders.
      *
-     * @param  array  $folders
+     * @param  string|array  $folders
      * @return array
      */
     public function getRecursiveFolders($folders)
