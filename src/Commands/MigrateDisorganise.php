@@ -26,14 +26,14 @@ class MigrateDisorganise extends BaseCommand
     /**
      * The migrator instance.
      *
-     * @var \Jaybizzle\MigrationsOrganiser\Migrator
+     * @var Migrator
      */
     protected $migrator;
 
     /**
      * The filesystem instance.
      *
-     * @var \Illuminate\Filesystem\Filesystem
+     * @var Filesystem
      */
     protected $files;
 
@@ -45,8 +45,8 @@ class MigrateDisorganise extends BaseCommand
     /**
      * Create a new migrator instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  \Illuminate\Database\Migrations\Migrator  $migrator
+     * @param  Filesystem  $files
+     * @param  Migrator  $migrator
      */
     public function __construct(Filesystem $files, Migrator $migrator)
     {
