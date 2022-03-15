@@ -12,7 +12,7 @@ Versions
 ========
  - Laravel 5.3-6.* use `v4.*`
  - Laravel 7.* use `v5.*`
- - Laravel 8.* use `v6.*`
+ - Laravel 8 & 9 use `v6.*`
 
 Installation
 ============
