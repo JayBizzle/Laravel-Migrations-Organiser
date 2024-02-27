@@ -3,16 +3,17 @@ name: Test
 on:
   push:
     branches:
-      - "master"
+      - master
   pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     strategy:
       fail-fast: true
       matrix:
-        php: [7.3, 7.4, 8.0, 8.1]
+        php: [7.3, 7.4, 8.0, 8.1, '8.2']
 
     name: PHP:${{ matrix.php }}
 
@@ -43,5 +44,4 @@ jobs:
           composer install --prefer-dist --no-interaction --no-suggest
 
       - name: Run Unit tests
-        run: |
-          vendor/bin/phpunit --coverage-clover=tests/logs/clover.xml
+        run: vendor/bin/phpunit --coverage-clover=tests/logs/clover.xml
