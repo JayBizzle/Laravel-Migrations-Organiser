@@ -42,7 +42,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
-          composer install --prefer-dist --no-interaction --no-suggest
+          composer require phpunit/phpunit:^${{ matrix.phpunit }} && composer install --prefer-dist --no-interaction --no-suggest
 
       - name: Run Unit tests
         run: vendor/bin/phpunit --coverage-clover=tests/logs/clover.xml
