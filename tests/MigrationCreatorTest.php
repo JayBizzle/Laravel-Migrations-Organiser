@@ -114,7 +114,7 @@ class DatabaseMigrationCreatorTest extends TestCase
 
         if(version_compare('8.2.0', PHP_VERSION, '<=')) {
             return $this->getMockBuilder(MigrationCreator::class)
-                ->onlyMethods(['getDatePrefix'])
+                ->addMethods(['getDatePrefix'])
                 ->setConstructorArgs([$files, $customStubs])
                 ->getMock();
         } else {
