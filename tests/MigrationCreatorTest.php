@@ -112,9 +112,16 @@ class DatabaseMigrationCreatorTest extends TestCase
         $files = m::mock(Filesystem::class);
         $customStubs = 'stubs';
 
-        return $this->getMockBuilder(MigrationCreator::class)
-            ->onlyMethods(['getDatePrefix'])
-            ->setConstructorArgs([$files, $customStubs])
-            ->getMock();
+        if(version_compare(8.2, PHP_VERSION, '>=')) {
+            return $this->getMockBuilder(MigrationCreator::class)
+                ->onlyMethods(['getDatePrefix'])
+                ->setConstructorArgs([$files, $customStubs])
+                ->getMock();
+        } else {
+            return $this->getMockBuilder(MigrationCreator::class)
+                ->setMethods(['getDatePrefix'])
+                ->setConstructorArgs([$files, $customStubs])
+                ->getMock();
+        }
     }
 }
