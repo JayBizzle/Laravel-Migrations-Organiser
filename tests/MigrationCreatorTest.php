@@ -112,7 +112,7 @@ class DatabaseMigrationCreatorTest extends TestCase
         $files = m::mock(Filesystem::class);
         $customStubs = 'stubs';
 
-        if(version_compare(8.2, PHP_VERSION, '>=')) {
+        if(version_compare('8.2.0', PHP_VERSION, '<=')) {
             return $this->getMockBuilder(MigrationCreator::class)
                 ->onlyMethods(['getDatePrefix'])
                 ->setConstructorArgs([$files, $customStubs])
