@@ -14,17 +14,6 @@ jobs:
       fail-fast: true
       matrix:
         php: [7.3, 7.4, 8.0, 8.1, 8.2]
-        include:
-          - php: 7.3
-            phpunit: 9.3
-          - php: 7.4
-            phpunit: 9.3
-          - php: 8.0
-            phpunit: 9.3
-          - php: 8.1
-            phpunit: 9.3
-          - php: 8.2
-            phpunit: 10.5
 
     name: PHP:${{ matrix.php }}
 
@@ -52,7 +41,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
-          composer require phpunit/phpunit:^${{ matrix.phpunit }} --dev && composer install --prefer-dist --no-interaction --no-suggest
+          composer require phpunit/phpunit:^10.5 --dev && composer install --prefer-dist --no-interaction --no-suggest
 
       - name: Run Unit tests
         run: vendor/bin/phpunit --coverage-clover=tests/logs/clover.xml
