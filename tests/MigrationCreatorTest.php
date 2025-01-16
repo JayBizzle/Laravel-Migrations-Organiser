@@ -15,6 +15,11 @@ class DatabaseMigrationCreatorTest extends TestCase
         m::close();
     }
 
+    public function testFakeAssert()
+    {
+        $this->assertTrue(true);
+    }
+
     public function testBasicCreateMethodStoresMigrationFile()
     {
         $creator = $this->getCreator();
