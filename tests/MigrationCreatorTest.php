@@ -7,6 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use InvalidArgumentException;
 use Jaybizzle\MigrationsOrganiser\MigrationCreator;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\TestCase;
 
 class DatabaseMigrationCreatorTest extends TestCase
