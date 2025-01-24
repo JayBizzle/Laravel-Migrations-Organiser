@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Jaybizzle\MigrationsOrganiser\Tests;
 
 use Composer\InstalledVersions;
 use Illuminate\Filesystem\Filesystem;
@@ -10,7 +10,7 @@ use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\TestCase;
 
-class DatabaseMigrationCreatorTest extends TestCase
+class MigrationCreatorTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
