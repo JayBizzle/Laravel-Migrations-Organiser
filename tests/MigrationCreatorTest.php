@@ -1,18 +1,30 @@
 <?php
 
-namespace Tests;
+namespace Jaybizzle\MigrationsOrganiser\Tests;
 
+use Composer\InstalledVersions;
 use Illuminate\Filesystem\Filesystem;
 use InvalidArgumentException;
 use Jaybizzle\MigrationsOrganiser\MigrationCreator;
-use Mockery as m;
+use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\TestCase;
 
-class DatabaseMigrationCreatorTest extends TestCase
+class MigrationCreatorTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
+    private $packageVersion;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->packageVersion = substr(InstalledVersions::getVersionRanges('illuminate/database'), 1);
+    }
+
     public function tearDown(): void
     {
-        m::close();
+        Mockery::close();
     }
 
     public function testBasicCreateMethodStoresMigrationFile()
@@ -26,7 +38,8 @@ class DatabaseMigrationCreatorTest extends TestCase
         $creator->getFilesystem()->shouldReceive('exists')->once()->with('foo/'.$date)->andReturn(false);
         $creator->getFilesystem()->shouldReceive('makeDirectory')->once();
         $creator->getFilesystem()->shouldReceive('ensureDirectoryExists')->andReturn(true);
-        $creator->getFilesystem()->shouldReceive('put')->once()->with('foo/'.$date.'/foo_create_bar.php', 'CreateBar');
+        $expectedStub = $this->expectClassNameReplace() ? 'CreateBar' : 'DummyClass';
+        $creator->getFilesystem()->shouldReceive('put')->once()->with('foo/'.$date.'/foo_create_bar.php', $expectedStub);
         $creator->getFilesystem()->shouldReceive('glob')->once()->with('foo/'.$date.'/*.php')->andReturn(['foo/'.$date.'/foo_create_bar.php']);
         $creator->getFilesystem()->shouldReceive('requireOnce')->once()->with('foo/'.$date.'/foo_create_bar.php');
 
@@ -49,7 +62,8 @@ class DatabaseMigrationCreatorTest extends TestCase
         $creator->getFilesystem()->shouldReceive('exists')->once()->with('foo/'.$date)->andReturn(false);
         $creator->getFilesystem()->shouldReceive('makeDirectory')->once();
         $creator->getFilesystem()->shouldReceive('ensureDirectoryExists')->andReturn(true);
-        $creator->getFilesystem()->shouldReceive('put')->once()->with('foo/'.$date.'/foo_create_bar.php', 'CreateBar baz');
+        $expectedStub = $this->expectClassNameReplace() ? 'CreateBar baz' : 'DummyClass baz';
+        $creator->getFilesystem()->shouldReceive('put')->once()->with('foo/'.$date.'/foo_create_bar.php', $expectedStub);
         $creator->getFilesystem()->shouldReceive('glob')->once()->with('foo/'.$date.'/*.php')->andReturn(['foo/'.$date.'/foo_create_bar.php']);
         $creator->getFilesystem()->shouldReceive('requireOnce')->once()->with('foo/'.$date.'/foo_create_bar.php');
 
@@ -70,7 +84,8 @@ class DatabaseMigrationCreatorTest extends TestCase
         $creator->getFilesystem()->shouldReceive('exists')->once()->with('foo/'.$date)->andReturn(false);
         $creator->getFilesystem()->shouldReceive('makeDirectory')->once();
         $creator->getFilesystem()->shouldReceive('ensureDirectoryExists')->andReturn(true);
-        $creator->getFilesystem()->shouldReceive('put')->once()->with('foo/'.$date.'/foo_create_bar.php', 'CreateBar baz');
+        $expectedStub = $this->expectClassNameReplace() ? 'CreateBar baz' : 'DummyClass baz';
+        $creator->getFilesystem()->shouldReceive('put')->once()->with('foo/'.$date.'/foo_create_bar.php', $expectedStub);
         $creator->getFilesystem()->shouldReceive('glob')->once()->with('foo/'.$date.'/*.php')->andReturn(['foo/'.$date.'/foo_create_bar.php']);
         $creator->getFilesystem()->shouldReceive('requireOnce')->once()->with('foo/'.$date.'/foo_create_bar.php');
 
@@ -87,7 +102,8 @@ class DatabaseMigrationCreatorTest extends TestCase
         $creator->getFilesystem()->shouldReceive('exists')->once()->with('foo/'.$date)->andReturn(false);
         $creator->getFilesystem()->shouldReceive('makeDirectory')->once();
         $creator->getFilesystem()->shouldReceive('ensureDirectoryExists')->andReturn(true);
-        $creator->getFilesystem()->shouldReceive('put')->once()->with('foo/'.$date.'/foo_create_bar.php', 'CreateBar baz');
+        $expectedStub = $this->expectClassNameReplace() ? 'CreateBar baz' : 'DummyClass baz';
+        $creator->getFilesystem()->shouldReceive('put')->once()->with('foo/'.$date.'/foo_create_bar.php', $expectedStub);
         $creator->getFilesystem()->shouldReceive('glob')->once()->with('foo/'.$date.'/*.php')->andReturn(['foo/'.$date.'/foo_create_bar.php']);
         $creator->getFilesystem()->shouldReceive('requireOnce')->once()->with('foo/'.$date.'/foo_create_bar.php');
 
@@ -107,9 +123,17 @@ class DatabaseMigrationCreatorTest extends TestCase
         $creator->create('migration_creator_fake_migration', 'foo');
     }
 
+    protected function expectClassNameReplace()
+    {
+        // Since Laravel 9.x, class name placeholders in migrations are not replaced.
+        // @see https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Migrations/MigrationCreator.php#L142
+        // @see https://github.com/laravel/framework/blob/9.x/src/Illuminate/Database/Migrations/MigrationCreator.php#L139
+        return version_compare($this->packageVersion, '9', '<');
+    }
+
     protected function getCreator()
     {
-        $files = m::mock(Filesystem::class);
+        $files = Mockery::mock(Filesystem::class);
         $customStubs = 'stubs';
 
         return $this->getMockBuilder(MigrationCreator::class)
