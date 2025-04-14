@@ -27,7 +27,7 @@ class MigrationCreatorTest extends TestCase
         Mockery::close();
     }
 
-    public function testBasicCreateMethodStoresMigrationFile()
+    public function test_basic_create_method_stores_migration_file()
     {
         $creator = $this->getCreator();
         $date = $this->currentDate();
@@ -43,7 +43,7 @@ class MigrationCreatorTest extends TestCase
         $creator->create('create_bar', 'foo');
     }
 
-    public function testPostCreateHooksAreCalled()
+    public function test_post_create_hooks_are_called()
     {
         $creator = $this->getCreator();
         $date = $this->currentDate();
@@ -69,7 +69,7 @@ class MigrationCreatorTest extends TestCase
         unset($_SERVER['__migration.creator']);
     }
 
-    public function testTableUpdateMigrationStoresFile()
+    public function test_table_update_migration_stores_file()
     {
         $creator = $this->getCreator();
         $date = $this->currentDate();
@@ -85,7 +85,7 @@ class MigrationCreatorTest extends TestCase
         $creator->create('create_bar', 'foo', 'baz');
     }
 
-    public function testTableCreationMigrationStoresFile()
+    public function test_table_creation_migration_stores_file()
     {
         $creator = $this->getCreator();
         $date = $this->currentDate();
@@ -101,7 +101,7 @@ class MigrationCreatorTest extends TestCase
         $creator->create('create_bar', 'foo', 'baz', true);
     }
 
-    public function testThrowsWhenDuplicateMigrationClassExists()
+    public function test_throws_when_duplicate_migration_class_exists()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('A MigrationCreatorFakeMigration class already exists.');
@@ -178,5 +178,4 @@ class MigrationCreatorTest extends TestCase
     {
         return version_compare($this->packageVersion, '9', '<');
     }
-
 }
