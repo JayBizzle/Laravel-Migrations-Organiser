@@ -178,4 +178,5 @@ class MigrationCreatorTest extends TestCase
     {
         return version_compare($this->packageVersion, '9', '<');
     }
+
 }
