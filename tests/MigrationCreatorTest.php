@@ -115,7 +115,7 @@ class MigrationCreatorTest extends TestCase
         $creator->getFilesystem()->shouldReceive('makeDirectory')->andReturnTrue();
         $creator->getFilesystem()->shouldReceive('put')->andReturn(true);
 
-        $stubPath = __DIR__ . '/stubs/MigrationCreatorFakeMigration.php';
+        $stubPath = __DIR__.'/stubs/MigrationCreatorFakeMigration.php';
 
         $creator->getFilesystem()->shouldReceive('glob')->once()
             ->with("foo/$date/*.php")
@@ -123,7 +123,7 @@ class MigrationCreatorTest extends TestCase
 
         $creator->getFilesystem()->shouldReceive('requireOnce')->once()
             ->with($stubPath)
-            ->andReturnUsing(fn() => require_once $stubPath);
+            ->andReturnUsing(fn () => require_once $stubPath);
 
         $creator->create('migration_creator_fake_migration', 'foo');
     }
@@ -143,7 +143,7 @@ class MigrationCreatorTest extends TestCase
     {
         $creator->getFilesystem()->shouldReceive('exists')->once()->with("stubs/$stub")->andReturn(false);
         $creator->getFilesystem()->shouldReceive('get')->once()
-            ->with($creator->stubPath() . "/$stub")
+            ->with($creator->stubPath()."/$stub")
             ->andReturn($content);
 
         $creator->getFilesystem()->shouldReceive('exists')->once()
@@ -165,7 +165,7 @@ class MigrationCreatorTest extends TestCase
 
     protected function currentDate(): string
     {
-        return date('Y') . '/' . date('m');
+        return date('Y').'/'.date('m');
     }
 
     /**
