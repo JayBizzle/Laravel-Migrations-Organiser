@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [7.3, 7.4, 8.0, 8.1]
+        php: [8.2, 8.3, 8.4]
 
     name: PHP:${{ matrix.php }}
 
@@ -32,7 +32,7 @@ jobs:
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
@@ -44,4 +44,4 @@ jobs:
 
       - name: Run Unit tests
         run: |
-          vendor/bin/phpunit --coverage-clover=tests/logs/clover.xml
+          vendor/bin/phpunit
