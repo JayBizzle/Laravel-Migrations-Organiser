@@ -38,11 +38,15 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.2, 8.3, 8.4]
-        laravel: [11.*, 12.*, 13.*]
-        exclude:
-          - php: 8.2
-            laravel: 13.*
+        include:
+          - { php: 8.2, laravel: '11.*', testbench: '9.*' }
+          - { php: 8.3, laravel: '11.*', testbench: '9.*' }
+          - { php: 8.4, laravel: '11.*', testbench: '9.*' }
+          - { php: 8.2, laravel: '12.*', testbench: '10.*' }
+          - { php: 8.3, laravel: '12.*', testbench: '10.*' }
+          - { php: 8.4, laravel: '12.*', testbench: '10.*' }
+          - { php: 8.3, laravel: '13.*', testbench: '11.*' }
+          - { php: 8.4, laravel: '13.*', testbench: '11.*' }
 
     name: PHP:${{ matrix.php }} / Laravel:${{ matrix.laravel }}
 
@@ -68,8 +72,8 @@ jobs:
           key: dependencies-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-composer-${{ hashFiles('composer.json') }}
           restore-keys: dependencies-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-composer-
 
-      - name: Install Laravel ${{ matrix.laravel }}
-        run: composer require "illuminate/support:${{ matrix.laravel }}" "illuminate/database:${{ matrix.laravel }}" "illuminate/filesystem:${{ matrix.laravel }}" "illuminate/console:${{ matrix.laravel }}" --no-update
+      - name: Install Laravel ${{ matrix.laravel }} with Testbench ${{ matrix.testbench }}
+        run: composer require "illuminate/support:${{ matrix.laravel }}" "illuminate/database:${{ matrix.laravel }}" "illuminate/filesystem:${{ matrix.laravel }}" "illuminate/console:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-update
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction
