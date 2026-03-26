@@ -1,43 +1,53 @@
 # Laravel Migrations Organiser
- [![Total Downloads](https://img.shields.io/packagist/dt/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://packagist.org/packages/jaybizzle/Laravel-Migrations-Organiser)
- <a href="https://styleci.io/repos/32828907"><img src="https://styleci.io/repos/32828907/shield" /></a>
 
-The number of migrations in any sized project can quickly become huge, and although they are ordered, having one big list can sometimes be inconvenient and slow to navigate.
+[![Total Downloads](https://img.shields.io/packagist/dt/JayBizzle/Laravel-Migrations-Organiser.svg?style=flat-square)](https://packagist.org/packages/jaybizzle/Laravel-Migrations-Organiser)
+[![Tests](https://github.com/JayBizzle/Laravel-Migrations-Organiser/actions/workflows/tests.yml/badge.svg)](https://github.com/JayBizzle/Laravel-Migrations-Organiser/actions/workflows/tests.yml)
 
-This package will put your migrations in `yyyy/mm` folders e.g.
-
-`./database/migrations/2015/03/2015_03_25_210946_create_users_table.php`
-
-Versions
-========
- - Laravel 5.3-6.* use `v4.*`
- - Laravel 7.* use `v5.*`
- - Laravel 8, 9, 10 use `v6.*`
- - Laravel 11, 12 use `v7.*`
-
-Installation
-============
+As projects grow, the number of migration files can quickly become unwieldy. This package automatically organises your migrations into `yyyy/mm` folders, making them easier to navigate.
 
 ```
+database/migrations/2025/03/2025_03_26_000000_create_users_table.php
+```
+
+## Version Compatibility
+
+| Laravel   | Package |
+|-----------|---------|
+| 5.3 - 6.x | v4.*   |
+| 7.x       | v5.*   |
+| 8 - 10    | v6.*   |
+| 11 - 13   | v7.*   |
+
+## Installation
+
+```bash
 composer require jaybizzle/laravel-migrations-organiser
 ```
 
-Add the following to the `providers` array in your `config/app.php` file..
+The package uses Laravel's auto-discovery, so no manual service provider registration is needed.
 
-```PHP
-    Jaybizzle\MigrationsOrganiser\MigrationsOrganiserServiceProvider::class,
+## Usage
+
+This package hooks into the default `artisan make:migration` command. Just use it as you normally would and the package takes care of the rest.
+
+### Organise existing migrations
+
+If you already have migrations in the base folder, run:
+
+```bash
+php artisan migrate:organise
 ```
 
-> Laravel ^5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider
+This will move all existing migrations into the appropriate `yyyy/mm` folders.
 
-Usage
-============
-This package hooks into the default `artisan make:migration` command. Just use that as you normally would and the package takes care of the rest.
+### Flatten migrations
 
-##### What if I have already created migrations
-No problem, just run `artisan migrate:organise` and your migrations will be moved into the relevant `yyyy/mm` folders.
+To move all migrations back to the base migrations folder:
 
-##### I want my migrations back to how they were
-Again, no problem. Running `artisan migrate:disorganise` will move all migrations from the `yyyy/mm` folder structure into the base migrations folder. Add the `--force` option to delete left over folders without confirmation.
+```bash
+php artisan migrate:flatten
+```
 
-[![Analytics](https://ga-beacon.appspot.com/UA-72430465-1/Laravel-Migrations-Organiser/readme?pixel)](https://github.com/JayBizzle/Laravel-Migrations-Organiser)
+Add `--force` to delete leftover subdirectories without confirmation.
+
+> `migrate:disorganise` is still available as an alias for backward compatibility.
