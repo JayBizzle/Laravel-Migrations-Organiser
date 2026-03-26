@@ -39,8 +39,12 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.2, 8.3, 8.4]
+        laravel: [11.*, 12.*, 13.*]
+        exclude:
+          - php: 8.2
+            laravel: 13.*
 
-    name: PHP:${{ matrix.php }}
+    name: PHP:${{ matrix.php }} / Laravel:${{ matrix.laravel }}
 
     steps:
       - name: Checkout
@@ -61,8 +65,11 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
-          restore-keys: dependencies-php-${{ matrix.php }}-composer-
+          key: dependencies-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-composer-${{ hashFiles('composer.json') }}
+          restore-keys: dependencies-php-${{ matrix.php }}-laravel-${{ matrix.laravel }}-composer-
+
+      - name: Install Laravel ${{ matrix.laravel }}
+        run: composer require "illuminate/support:${{ matrix.laravel }}" "illuminate/database:${{ matrix.laravel }}" "illuminate/filesystem:${{ matrix.laravel }}" "illuminate/console:${{ matrix.laravel }}" --no-update
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction
