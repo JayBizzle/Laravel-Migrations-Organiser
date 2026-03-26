@@ -3,8 +3,8 @@
 namespace Jaybizzle\MigrationsOrganiser\Tests;
 
 use Jaybizzle\MigrationsOrganiser\MigrationCreator;
-use Jaybizzle\MigrationsOrganiser\Migrator;
 use Jaybizzle\MigrationsOrganiser\MigrationsOrganiserServiceProvider;
+use Jaybizzle\MigrationsOrganiser\Migrator;
 use Orchestra\Testbench\TestCase;
 
 class ServiceProviderTest extends TestCase

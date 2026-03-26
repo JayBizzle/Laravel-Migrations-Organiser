@@ -51,9 +51,6 @@ class MigrateFlatten extends BaseCommand
 
     /**
      * Create a new migrator instance.
-     *
-     * @param  Filesystem  $files
-     * @param  Migrator  $migrator
      */
     public function __construct(Filesystem $files, Migrator $migrator)
     {
