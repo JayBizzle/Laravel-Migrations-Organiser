@@ -43,7 +43,8 @@
         "phpunit/phpunit": "^9.3|^10.0|^11.0",
         "illuminate/database": "^10.0|^12.0|^13.0",
         "illuminate/filesystem": "^10.0|^12.0|^13.0",
-        "illuminate/console": "^10.0|^12.0|^13.0"
+        "illuminate/console": "^10.0|^12.0|^13.0",
+        "orchestra/testbench": "^10.2"
     },
     "extra": {
         "laravel": {
