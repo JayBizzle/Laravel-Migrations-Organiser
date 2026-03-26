@@ -34,7 +34,13 @@ class ServiceProviderTest extends TestCase
             ->assertExitCode(0);
     }
 
-    public function test_registers_disorganise_command()
+    public function test_registers_flatten_command()
+    {
+        $this->artisan('migrate:flatten', ['--help' => true])
+            ->assertExitCode(0);
+    }
+
+    public function test_registers_disorganise_alias()
     {
         $this->artisan('migrate:disorganise', ['--help' => true])
             ->assertExitCode(0);

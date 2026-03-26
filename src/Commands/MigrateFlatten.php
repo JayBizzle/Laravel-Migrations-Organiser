@@ -7,14 +7,21 @@ use Illuminate\Filesystem\Filesystem;
 use Jaybizzle\MigrationsOrganiser\Migrator;
 use Symfony\Component\Console\Input\InputOption;
 
-class MigrateDisorganise extends BaseCommand
+class MigrateFlatten extends BaseCommand
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'migrate:disorganise';
+    protected $name = 'migrate:flatten';
+
+    /**
+     * The console command aliases.
+     *
+     * @var array
+     */
+    protected $aliases = ['migrate:disorganise'];
 
     /**
      * The console command description.
@@ -56,14 +63,6 @@ class MigrateDisorganise extends BaseCommand
     }
 
     /**
-     * Fire the command. (Compatibility for < 5.5).
-     */
-    public function fire()
-    {
-        $this->handle();
-    }
-
-    /**
      * Create date folder structure and move migrations into.
      *
      * @return void
@@ -86,7 +85,7 @@ class MigrateDisorganise extends BaseCommand
             $this->files->move($this->basePath.'/'.$datePath.$migration_name.'.php', $this->basePath.'/'.$migration_name.'.php');
         }
 
-        $this->info('Migrations disorganised successfully ('.$count.' migrations moved)');
+        $this->info('Migrations flattened successfully ('.$count.' migrations moved)');
         $this->cleanup();
     }
 
