@@ -91,6 +91,16 @@ class MigratorTest extends TestCase
         $this->assertSame([$this->tempDir], $result);
     }
 
+    public function test_get_recursive_folders_handles_file_path()
+    {
+        $file = $this->tempDir.'/2024_03_26_000000_create_users_table.php';
+        file_put_contents($file, '<?php');
+
+        $result = $this->migrator->getRecursiveFolders($file);
+
+        $this->assertSame([$file], $result);
+    }
+
     public function test_get_migration_files_finds_files_in_subdirectories()
     {
         mkdir($this->tempDir.'/2024/03', 0775, true);

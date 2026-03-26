@@ -41,6 +41,12 @@ class Migrator extends M
         $paths = [];
 
         foreach ($folders as $folder) {
+            if (! is_dir($folder)) {
+                $paths[] = $folder;
+
+                continue;
+            }
+
             $iter = new Iterator(
                 new DirectoryIterator($folder, DirectoryIterator::SKIP_DOTS),
                 Iterator::SELF_FIRST,
